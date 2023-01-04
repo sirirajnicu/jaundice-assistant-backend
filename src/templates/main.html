@@ -13,9 +13,72 @@
       integrity="sha384-UkVD+zxJKGsZP3s/JuRzapi4dQrDDuEf/kHphzg8P3v8wuQ6m9RLjTkPGeFcglQU"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@coreui/icons@2.1.0/css/all.css"
+      integrity="sha256-P+SUHF+0vboeEU42U8VdwRJ1gKmuCCdTFC1JmaIbdtY="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@coreui/icons@2.1.0/css/brand.css"
+      integrity="sha256-rgYVJSR0STaKEDdA87S0BegBtwLDNNYZxEI7x1Udo8g="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@coreui/icons@2.1.0/css/flag.css"
+      integrity="sha256-Zo8c9HvH5atHWP9lZ72yvluTZBnBuldxnPOX4ybyavA="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@coreui/icons@2.1.0/css/free.css"
+      integrity="sha256-39YqV4xfFZ4povel6pkLWY9aetbChM6P57mfJa0ko1o="
+      crossorigin="anonymous"
+    />
+
+    <style>
+      main {
+        width: 69%;
+        margin: 20px auto 0;
+      }
+      a {
+        color: #111111;
+      }
+      .sidebar {
+        height: 100vh;
+      }
+    </style>
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <div class="sidebar sidebar-show">
+      <ul class="sidebar-nav">
+        <li class="nav-title">Jaundice Assistant</li>
+        <li class="nav-item">
+          <a class="nav-link" href="/patient">
+            <i class="nav-icon cil-baby"></i> Current Patient
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/consultation-status">
+            <i class="nav-icon cil-lightbulb"></i> Consultation Status
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/order-review">
+            <i class="nav-icon cil-clipboard"></i> Order Review
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/case-review">
+            <i class="nav-icon cil-briefcase"></i> Case Review
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    {% block content %} {% endblock %}
 
     <!-- Option 1: CoreUI for Bootstrap Bundle with Popper -->
     <script
