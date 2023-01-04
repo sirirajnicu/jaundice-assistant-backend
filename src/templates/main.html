@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Jaundice Assistant</title>
 
-    <!-- Option 1: CoreUI for Bootstrap CSS -->
+    <!-- CoreUI for Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.2.0/dist/css/coreui.min.css"
       rel="stylesheet"
@@ -39,48 +38,47 @@
     />
 
     <style>
-      main {
-        width: 69%;
-        margin: 20px auto 0;
-      }
       a {
         color: #111111;
       }
+      main {
+        margin-left: 15%;
+      }
       .sidebar {
         height: 100vh;
+        width: 15%;
       }
     </style>
   </head>
   <body>
-    <div class="sidebar sidebar-show">
+    <div class="sidebar sidebar-show fixed-top">
       <ul class="sidebar-nav">
         <li class="nav-title">Jaundice Assistant</li>
         <li class="nav-item">
-          <a class="nav-link" href="/patient">
+          <a class="nav-link" href="/current-patient/">
             <i class="nav-icon cil-baby"></i> Current Patient
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/consultation-status">
+          <a class="nav-link" href="/consultation-status/">
             <i class="nav-icon cil-lightbulb"></i> Consultation Status
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/order-review">
+          <a class="nav-link" href="/order-review/">
             <i class="nav-icon cil-clipboard"></i> Order Review
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/case-review">
+          <a class="nav-link" href="/case-review/">
             <i class="nav-icon cil-briefcase"></i> Case Review
           </a>
         </li>
       </ul>
     </div>
+    <main>{% block content %}{% endblock %}</main>
 
-    {% block content %} {% endblock %}
-
-    <!-- Option 1: CoreUI for Bootstrap Bundle with Popper -->
+    <!-- CoreUI for Bootstrap Bundle with Popper -->
     <script
       src="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.2.0/dist/js/coreui.bundle.min.js"
       integrity="sha384-n0qOYeB4ohUPebL1M9qb/hfYkTp4lvnZM6U6phkRofqsMzK29IdkBJPegsyfj/r4"

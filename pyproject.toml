@@ -10,7 +10,6 @@ packages = [{include = "src"}]
 [tool.poetry.dependencies]
 python = "^3.10"
 flask = "^2.2.2"
-flask-bootstrap = "^3.3.7.1"
 
 
 [build-system]
