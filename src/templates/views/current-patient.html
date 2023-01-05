@@ -1,60 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Jaundice Assistant</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Jaundice Assistant</title>
 </head>
 <body>
 {% extends "main.html" %} {% block content %}
-    <main>
-        <h1>Current Patient</h1>
-        <br/>
-        <div class="card mb-3">
-            <h4 class="card-header">Patient Personal Information</h4>
-            <div class="card-body">
-                <form>
-                    <div class="row mb-3">
-                        <div class="col-8">
-                            <label for="fullname" class="form-label">Patient's Full Name</label>
-                            <input type="text" class="form-control" id="fullname" aria-describedby="fullname" readonly>
-                        </div>
-                        <div class="col-4">
-                            <label for="hn" class="form-label">Hospital Number</label>
-                            <input type="number" class="form-control" id="hn" aria-describedby="hn" readonly>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col">
-                            <label for="birthday" class="form-label">Birth Date</label>
-                            <input type="date" class="form-control" id="birthday" aria-describedby="birthday" readonly>
-                        </div>
-                        <div class="col">
-                            <label for="birthtime" class="form-label">Birth Time</label>
-                            <input type="time" class="form-control" id="birthtime" aria-describedby="birthtime"
-                                   readonly>
-                        </div>
-                        <div class="col">
-                            <label for="gestational_age" class="form-label">Gestational Age</label>
-                            <input type="number" class="form-control" id="gestational_age"
-                                   aria-describedby="gestational_age" readonly>
-                        </div>
-                        <div class="col">
-                            <label for="birth_weight" class="form-label">Birth Weight</label>
-                            <input type="number" class="form-control" id="birth_weight" aria-describedby="birth_weight"
-                                   readonly>
-                        </div>
-                        <div class="col">
-                            <label for="admission_type" class="form-label">Admission Type</label>
-                            <input type="text" class="form-control" id="admission_type"
-                                   aria-describedby="admission_type" readonly>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-primary">Edit</button>
-                </form>
+  <main>
+    <h1>Current Patient</h1>
+    <br/>
+    <div class="card mb-3">
+      <h4 class="card-header">Patient Personal Information</h4>
+      <div class="card-body">
+        <form>
+          <div class="row mb-3">
+            <div class="col-8">
+              <label for="fullname" class="form-label">Patient's Full Name</label>
+              <input type="text" class="form-control" id="fullname" aria-describedby="fullname" readonly>
             </div>
-        </div>
-    </main>
+            <div class="col-4">
+              <label for="hn" class="form-label">Hospital Number</label>
+              <input type="number" class="form-control" id="hn" aria-describedby="hn" readonly>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col">
+              <label for="birthday" class="form-label">Birth Date</label>
+              <input type="date" class="form-control" id="birthday" aria-describedby="birthday" readonly>
+            </div>
+            <div class="col">
+              <label for="birthtime" class="form-label">Birth Time</label>
+              <input type="time" class="form-control" id="birthtime" aria-describedby="birthtime"
+                     readonly>
+            </div>
+            <div class="col">
+              <label for="gestational_age" class="form-label">Gestational Age</label>
+              <input type="number" class="form-control" id="gestational_age"
+                     aria-describedby="gestational_age" readonly>
+            </div>
+            <div class="col">
+              <label for="birth_weight" class="form-label">Birth Weight</label>
+              <input type="number" class="form-control" id="birth_weight" aria-describedby="birth_weight"
+                     readonly>
+            </div>
+            <div class="col">
+              <label for="admission_type" class="form-label">Admission Type</label>
+              <input type="text" class="form-control" id="admission_type"
+                     aria-describedby="admission_type" readonly>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary">Edit</button>
+        </form>
+      </div>
+    </div>
+  </main>
 {% endblock %}
 </body>
 </html>
