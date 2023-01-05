@@ -16,5 +16,5 @@ poetry env use /path/to/python3.10/interpreter
 
 ```shell
 poetry update
-poetry run app
+poetry run dev
 ```

@@ -1,88 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Jaundice Assistant</title>
 
     <!-- CoreUI for Bootstrap CSS -->
     <link
-      href="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.2.0/dist/css/coreui.min.css"
-      rel="stylesheet"
-      integrity="sha384-UkVD+zxJKGsZP3s/JuRzapi4dQrDDuEf/kHphzg8P3v8wuQ6m9RLjTkPGeFcglQU"
-      crossorigin="anonymous"
+            href="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.2.0/dist/css/coreui.min.css"
+            rel="stylesheet"
+            integrity="sha384-UkVD+zxJKGsZP3s/JuRzapi4dQrDDuEf/kHphzg8P3v8wuQ6m9RLjTkPGeFcglQU"
+            crossorigin="anonymous"
     />
     <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@coreui/icons@2.1.0/css/all.css"
-      integrity="sha256-P+SUHF+0vboeEU42U8VdwRJ1gKmuCCdTFC1JmaIbdtY="
-      crossorigin="anonymous"
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@coreui/icons@2.1.0/css/all.css"
+            integrity="sha256-P+SUHF+0vboeEU42U8VdwRJ1gKmuCCdTFC1JmaIbdtY="
+            crossorigin="anonymous"
     />
     <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@coreui/icons@2.1.0/css/brand.css"
-      integrity="sha256-rgYVJSR0STaKEDdA87S0BegBtwLDNNYZxEI7x1Udo8g="
-      crossorigin="anonymous"
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@coreui/icons@2.1.0/css/brand.css"
+            integrity="sha256-rgYVJSR0STaKEDdA87S0BegBtwLDNNYZxEI7x1Udo8g="
+            crossorigin="anonymous"
     />
     <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@coreui/icons@2.1.0/css/flag.css"
-      integrity="sha256-Zo8c9HvH5atHWP9lZ72yvluTZBnBuldxnPOX4ybyavA="
-      crossorigin="anonymous"
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@coreui/icons@2.1.0/css/flag.css"
+            integrity="sha256-Zo8c9HvH5atHWP9lZ72yvluTZBnBuldxnPOX4ybyavA="
+            crossorigin="anonymous"
     />
     <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@coreui/icons@2.1.0/css/free.css"
-      integrity="sha256-39YqV4xfFZ4povel6pkLWY9aetbChM6P57mfJa0ko1o="
-      crossorigin="anonymous"
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@coreui/icons@2.1.0/css/free.css"
+            integrity="sha256-39YqV4xfFZ4povel6pkLWY9aetbChM6P57mfJa0ko1o="
+            crossorigin="anonymous"
     />
-
     <style>
-      a {
-        color: #111111;
-      }
-      main {
-        margin-left: 15%;
-      }
-      .sidebar {
-        height: 100vh;
-        width: 15%;
-      }
+        a {
+            color: #111111;
+        }
+
+        .sidebar {
+            height: 100vh;
+            width: 20%;
+        }
     </style>
-  </head>
-  <body>
-    <div class="sidebar sidebar-show fixed-top">
-      <ul class="sidebar-nav">
+</head>
+<body>
+<div class="sidebar sidebar-show fixed-top">
+    <ul class="sidebar-nav">
         <li class="nav-title">Jaundice Assistant</li>
         <li class="nav-item">
-          <a class="nav-link" href="/current-patient/">
-            <i class="nav-icon cil-baby"></i> Current Patient
-          </a>
+            <a class="nav-link" href="{{ url_for('current_patient') }}">
+                <i class="nav-icon cil-baby"></i> Current Patient
+            </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/consultation-status/">
-            <i class="nav-icon cil-lightbulb"></i> Consultation Status
-          </a>
+            <a class="nav-link" href="{{ url_for('consultation_status') }}">
+                <i class="nav-icon cil-lightbulb"></i> Consultation Status
+            </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/order-review/">
-            <i class="nav-icon cil-clipboard"></i> Order Review
-          </a>
+            <a class="nav-link" href="{{ url_for('order_review') }}">
+                <i class="nav-icon cil-clipboard"></i> Order Review
+            </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/case-review/">
-            <i class="nav-icon cil-briefcase"></i> Case Review
-          </a>
+            <a class="nav-link" href="{{ url_for('case_review') }}">
+                <i class="nav-icon cil-briefcase"></i> Case Review
+            </a>
         </li>
-      </ul>
-    </div>
-    <main>{% block content %}{% endblock %}</main>
+    </ul>
+</div>
+<div style="margin-left: 20%">
+    {% block content %}{% endblock %}
+</div>
 
-    <!-- CoreUI for Bootstrap Bundle with Popper -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.2.0/dist/js/coreui.bundle.min.js"
-      integrity="sha384-n0qOYeB4ohUPebL1M9qb/hfYkTp4lvnZM6U6phkRofqsMzK29IdkBJPegsyfj/r4"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+<!-- CoreUI for Bootstrap Bundle with Popper -->
+<script
+        src="https://cdn.jsdelivr.net/npm/@coreui/coreui@4.2.0/dist/js/coreui.bundle.min.js"
+        integrity="sha384-n0qOYeB4ohUPebL1M9qb/hfYkTp4lvnZM6U6phkRofqsMzK29IdkBJPegsyfj/r4"
+        crossorigin="anonymous"
+></script>
+</body>
 </html>
