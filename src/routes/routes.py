@@ -1,5 +1,8 @@
 from flask import Blueprint, render_template
 
+from src.jd_utils import split_risks
+from src.jd_utils.const import HYPERBILIRUBINEMIA_RISKS
+
 routes = Blueprint("routes", __name__)
 
 
@@ -10,7 +13,8 @@ def main():
 
 @routes.route("/current-patient/")
 def current_patient():
-    return render_template("views/current-patient.html")
+    hyper_risks: list[list[str]] = split_risks(HYPERBILIRUBINEMIA_RISKS)
+    return render_template("views/current-patient.html", risks1=hyper_risks)
 
 
 @routes.route("/consultation-status/")

@@ -9,9 +9,9 @@
 {% extends "main.html" %} {% block content %}
   <main>
     <h1>Current Patient</h1>
-    <br/>
+    <hr/>
     <div class="card mb-3">
-      <h4 class="card-header">Patient Personal Information</h4>
+      <h5 class="card-header">Patient Personal Information</h5>
       <div class="card-body">
         <form>
           <div class="row mb-3">
@@ -50,7 +50,29 @@
                      aria-describedby="admission_type" readonly>
             </div>
           </div>
-          <button type="button" class="btn btn-primary">Edit</button>
+          <button type="button" class="btn btn-primary">Add Information</button>
+          <button type="button" class="btn btn-primary">Edit Information</button>
+        </form>
+      </div>
+    </div>
+    <div class="card mb-3">
+      <h5 class="card-header">Risk Factors for Significant Hyperbilirubinemia</h5>
+      <div class="card-body">
+        <form>
+          <div class="row mb-3">
+            {% for risk_list in risks1 %}
+              <div class="col">
+                {% for risk in risk_list %}
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      {{ risk }}
+                    </label>
+                  </div>
+                {% endfor %}
+              </div>
+            {% endfor %}
+          </div>
         </form>
       </div>
     </div>
