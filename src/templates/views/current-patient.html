@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Jaundice Assistant</title>
+  <title>Current Patient | Jaundice Assistant</title>
 </head>
 <body>
 {% extends "main.html" %} {% block content %}
@@ -50,8 +50,8 @@
                      aria-describedby="admission_type" readonly>
             </div>
           </div>
-          <button type="button" class="btn btn-primary">Add Information</button>
-          <button type="button" class="btn btn-primary">Edit Information</button>
+          <button type="button" class="btn btn-primary btn-sm">Add Information</button>
+          <button type="button" class="btn btn-primary btn-sm">Edit Information</button>
         </form>
       </div>
     </div>
@@ -59,7 +59,7 @@
       <h5 class="card-header">Risk Factors for Significant Hyperbilirubinemia</h5>
       <div class="card-body">
         <form>
-          <div class="row mb-3">
+          <div class="row mb-2">
             {% for risk_list in risks1 %}
               <div class="col">
                 {% for risk in risk_list %}
@@ -73,7 +73,48 @@
               </div>
             {% endfor %}
           </div>
+          <button class="btn btn-primary btn-sm" type="submit">
+            <i class="btn-icon cil-reload"></i> Update risks
+          </button>
         </form>
+      </div>
+      <div class="card-footer">
+        {% if is_risky1 %}
+          Conclusion: <span class="badge text-bg-danger text-white">At risk, contact clinician ASAP</span>
+        {% else %}
+          Conclusion: <span class="badge text-bg-primary text-white">Not at risk</span>
+        {% endif %}
+      </div>
+    </div>
+    <div class="card mb-3">
+      <h5 class="card-header">Risk Factors for Bilirubin-Induced Neurotoxicity</h5>
+      <div class="card-body">
+        <form>
+          <div class="row mb-2">
+            {% for risk_list in risks2 %}
+              <div class="col">
+                {% for risk in risk_list %}
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      {{ risk }}
+                    </label>
+                  </div>
+                {% endfor %}
+              </div>
+            {% endfor %}
+          </div>
+          <button class="btn btn-primary btn-sm" type="submit">
+            <i class="btn-icon cil-reload"></i> Update risks
+          </button>
+        </form>
+      </div>
+      <div class="card-footer">
+        {% if is_risky2 %}
+          Conclusion: <span class="badge text-bg-danger text-white">At risk, contact clinician ASAP</span>
+        {% else %}
+          Conclusion: <span class="badge text-bg-primary text-white">Not at risk</span>
+        {% endif %}
       </div>
     </div>
   </main>

@@ -10,3 +10,12 @@ HYPERBILIRUBINEMIA_RISKS = [
     "Down syndrome",
     "Macrosomic infant of diabetic mother"
 ]
+
+NEUROTOXICITY_RISKS = [
+    "ABO or Rh incompatibility",
+    "Other hemolytic diseases",
+    "GA < 38 weeks",
+    "Albumin < 3g/dL",
+    "Sepsis",
+    "Clinically unstable in past 24 hours"
+]
