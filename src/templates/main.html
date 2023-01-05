@@ -45,6 +45,12 @@
             height: 100vh;
             width: 20%;
         }
+
+        main{
+            height: 80%;
+            width: 90%;
+            margin: 20px auto 0;
+        }
     </style>
 </head>
 <body>
@@ -52,22 +58,22 @@
     <ul class="sidebar-nav">
         <li class="nav-title">Jaundice Assistant</li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('current_patient') }}">
+            <a class="nav-link" href="{{ url_for('routes.current_patient') }}">
                 <i class="nav-icon cil-baby"></i> Current Patient
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('consultation_status') }}">
+            <a class="nav-link" href="{{ url_for('routes.consultation_status') }}">
                 <i class="nav-icon cil-lightbulb"></i> Consultation Status
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('order_review') }}">
+            <a class="nav-link" href="{{ url_for('routes.order_review') }}">
                 <i class="nav-icon cil-clipboard"></i> Order Review
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('case_review') }}">
+            <a class="nav-link" href="{{ url_for('routes.case_review') }}">
                 <i class="nav-icon cil-briefcase"></i> Case Review
             </a>
         </li>
