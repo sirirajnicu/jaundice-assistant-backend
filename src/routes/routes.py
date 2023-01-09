@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, redirect, url_for
 
 from src.jd_utils import split_risks
 from src.jd_utils.const import HYPERBILIRUBINEMIA_RISKS, NEUROTOXICITY_RISKS
@@ -8,7 +8,7 @@ routes = Blueprint("routes", __name__)
 
 @routes.route("/")
 def main():
-    return render_template("main.html")
+    return redirect(url_for('routes.current_patient'))
 
 
 @routes.route("/current-patient/")
