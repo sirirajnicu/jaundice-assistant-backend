@@ -11,6 +11,7 @@ packages = [{include = "src"}]
 python = "^3.10"
 flask = "^2.2.2"
 fhir-resources = "^6.5.0"
+numpy = "^1.24.2"
 
 
 [build-system]
