@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Web application to assist in managing jaundice cases."
 authors = ["Nawat Ngerncham <n.ngerncham@gmail.com>"]
 license = "MIT"
-readme = "README.md"
+readme = "src/readme.md"
 packages = [{include = "src"}]
 
 [tool.poetry.dependencies]
