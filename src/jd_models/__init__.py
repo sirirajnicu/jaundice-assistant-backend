@@ -2,8 +2,6 @@ from dataclasses import dataclass
 from datetime import datetime
 from enum import Enum
 
-from numpy import ndarray
-
 Gender = Enum("Gender", ["MALE", "FEMALE"])
 
 
@@ -13,5 +11,5 @@ class Patient:
     gestational_age: int
     birth_date_time: datetime
 
-    tcb_value: ndarray
-    tsb_value: ndarray
+    tcb_value: list[float]
+    tsb_value: list[float]
