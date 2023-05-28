@@ -1,4 +1,4 @@
-from ..jd_models import Patient, Gender
+from jd_models import Patient, Gender
 
 
 def tcb_within_lt3_geq15_from_threshold(tcb_value: float,
