@@ -3,6 +3,7 @@ from datetime import datetime
 from enum import Enum
 
 Gender = Enum("Gender", ["MALE", "FEMALE"])
+PhototherapyType = Enum("PhototherapyType", ["NONE", "SINGLE", "DOUBLE"])
 
 
 @dataclass
@@ -13,3 +14,5 @@ class Patient:
 
     tcb_value: list[float]
     tsb_value: list[float]
+
+    on_photo_therapy: PhototherapyType
