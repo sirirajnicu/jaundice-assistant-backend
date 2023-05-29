@@ -1,22 +1,8 @@
 from jd_models import Patient, Gender
-
-
-def tcb_within_lt3_geq15_from_threshold(tcb_value: float,
-                                        photo_threshold: float) -> bool:
-    threshold_diff = photo_threshold - tcb_value
-    return threshold_diff <= 3.0 or tcb_value >= 15.0
-
-
-def compute_first_day_tcb(patient: Patient) -> float:
-    return 0.0
-
-
-def compute_later_tcb(patient: Patient) -> float:
-    return 0.0
-
-
-def jx_within_first_24(patient: Patient) -> bool:
-    return False
+from recommend_utils import tcb_within_lt3_geq15_from_threshold, \
+    compute_first_day_tcb, \
+    compute_later_tcb, \
+    jx_within_first_24
 
 
 def handle_tcb_lt_photo_threshold(patient: Patient,

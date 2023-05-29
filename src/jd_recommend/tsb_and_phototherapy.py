@@ -1,12 +1,13 @@
-from jd_models import Patient, PhototherapyType
+from jd_models import Patient, PhototherapyType, Gender
+from recommend_utils import is_within_96hrs_after_phototherapy, \
+    patient_between_phototherapy, \
+    jx_within_first_24, \
+    compute_first_day_tcb, \
+    compute_later_tcb
 
 
-def patient_between_phototherapy(patient: Patient) -> bool:
-    return patient.on_photo_therapy == PhototherapyType.NONE
-
-
-def tsb_lt_threshold_no_photo(patient: Patient,
-                              photo_threshold: float) -> str or list[str]:
+def tsb_lt_threshold_with_photo(patient: Patient,
+                                photo_threshold: float) -> str or list[str]:
     tsb_diff = photo_threshold - patient.tsb_value[-1]
     if tsb_diff < 0:
         return "No treatment"
@@ -26,12 +27,30 @@ def tsb_lt_threshold_no_photo(patient: Patient,
         ]
 
 
-def tsb_lt_threshold_with_photo(patient: Patient,
-                                photo_threshold: float) -> str or list[str]:
-    return ""
+def tsb_lt_threshold_no_photo(patient: Patient,
+                              photo_threshold: float) -> str or list[str]:
+    if is_within_96hrs_after_phototherapy(patient):
+        return "Follow TSB/TCB according to rebound risk and trajectory"
+
+    elif (compute_first_day_tcb(patient) > 0.3 or
+            compute_later_tcb(patient) > 0.2 or
+            jx_within_first_24(patient)):
+        treatments = [
+            "TSB + consult clinician",
+            "CBC, blood smear, reti count",
+            "Blood group, DAT",
+        ]
+        if patient.gender == Gender.MALE:
+            treatments.append("G6PD")
+        return treatments
+
+    else:
+        return "TSB/TCB follow-up"
 
 
 def tsb_under_threshold(patient: Patient,
                         photo_threshold: float) -> str or list[str]:
     if patient_between_phototherapy(patient):
         return tsb_lt_threshold_no_photo(patient, photo_threshold)
+    else:
+        return tsb_lt_threshold_with_photo(patient, photo_threshold)
