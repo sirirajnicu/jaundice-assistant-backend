@@ -1,2 +1,4 @@
 __pycache__
 poetry.lock
+.idea
+.DS_Store
