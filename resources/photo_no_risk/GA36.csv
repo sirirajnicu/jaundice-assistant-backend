@@ -1,8 +1,4 @@
-﻿#Phototherapy threshold for infants GA 36 weeks with no neurological risk factors ,
-#HOL stands for hours of life and TSB is total serum bilirubin,
-"#Data at HOL 21,45,69,93,117,141,165,189,213,237,261,285,309,333 are not available, they are imputated by averaging 2 nearest data",
-#datatype   int  float,
-HOL ,TSB 
+﻿HOL,TSB 
 0,
 1,6.9
 2,7.1
