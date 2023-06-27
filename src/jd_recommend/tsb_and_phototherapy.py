@@ -1,4 +1,4 @@
-from jd_models import Patient, PhototherapyType, Gender
+from src.jd_models import Patient, PhototherapyType, Gender
 from recommend_utils import is_within_96hrs_after_phototherapy, \
     patient_between_phototherapy, \
     jx_within_first_24, \

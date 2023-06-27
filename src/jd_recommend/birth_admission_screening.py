@@ -1,4 +1,4 @@
-from jd_models import Patient, Gender
+from src.jd_models import Patient, Gender
 from recommend_utils import tcb_within_lt3_geq15_from_threshold, \
     compute_first_day_tcb, \
     compute_later_tcb, \
@@ -11,8 +11,8 @@ def handle_tcb_lt_photo_threshold(patient: Patient,
         return "Conduct TSB and consult Clinician"
 
     elif (compute_first_day_tcb(patient) > 0.3 or
-            compute_later_tcb(patient) > 0.2 or
-            jx_within_first_24(patient)):
+          compute_later_tcb(patient) > 0.2 or
+          jx_within_first_24(patient)):
         treatments = [
             "TSB + consult clinician",
             "CBC, blood smear, reti count",
