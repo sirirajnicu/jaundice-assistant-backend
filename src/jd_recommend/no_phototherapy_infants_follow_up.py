@@ -2,7 +2,7 @@ from src.jd_models import Patient
 from datetime import timedelta, datetime
 
 
-def recommend_follow_up_tcb(patient: Patient, photo_threshold: float) -> str:
+def recommend_follow_up_tcb_or_tsb(patient: Patient, photo_threshold: float) -> str:
     tcb_difference = round(photo_threshold - patient.tcb_value, 1)
     patient_age = patient.birth_date_time - datetime.now()
 
