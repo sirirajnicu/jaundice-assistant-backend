@@ -15,11 +15,11 @@ def handle_tcb_lt_photo_threshold(patient: Patient,
           jx_within_first_24(patient)):
         treatments = [
             "TSB + consult clinician",
-            "CBC, blood smear, reti count",
-            "Blood group, DAT",
+            "CBC, blood smear, reti count if never been tested",
+            "Blood group, DAT if never been tested",
         ]
         if patient.gender == Gender.MALE:
-            treatments.append("G6PD")
+            treatments.append("G6PD assay if never been tested")
         return treatments
 
     else:
@@ -33,23 +33,28 @@ def handle_tcb_geq_photo_threshold(patient: Patient,
     if diff_from_threshold < -2.0:
         treatments = [
             "TSB + consult clinician",
-            "CBC, blood smear, reti count",
-            "Blood group, DAT",
+            "CBC, blood smear, reti count if never been tested",
+            "Blood group, DAT if never been tested",
         ]
         if patient.gender == Gender.MALE:
-            treatments.append("G6PD")
+            treatments.append("G6PD assay if never been tested")
         return treatments
 
     else:
         treatments = [
-            "Admit to emergency neonatal units",
+            "Admit to emergency neonatal units to apply phototherapy",
             "Double phototherapy",
-            "TB/DB, albumin, CBC, blood smea, reti count",
-            "Blood group, DAT",
-            "Group match",
+            "Blood test after admission and request for a rushed result",
+            "TB/DB, albumin",
+            "CBC, blood smear, reti count if never been tested",
+            "Provide electrolytes if patient shows sign of dehydration",
+            "Blood group, DAT if never been tested",
+            "Group match and prepare for exchange transfusion after seeing TB/DB results",
+            "NPO and provide IV",
+            "Consult with a newborn fellow for considering doing a central line as they see fit"
         ]
         if patient.gender == Gender.MALE:
-            treatments.append("G6PD")
+            treatments.append("G6PD assay if never been tested")
         return treatments
 
 
