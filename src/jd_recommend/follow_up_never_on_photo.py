@@ -8,8 +8,8 @@ class BilirubinType(Enum):
     TSB = 1
 
 
-def recommend_follow_up_without_having_been_on_photo(patient: Patient, photo_threshold: float,
-                                                     bilirubin_type_to_check: BilirubinType) -> str:
+def manage_follow_up_never_on_photo(patient: Patient, photo_threshold: float,
+                                    bilirubin_type_to_check: BilirubinType) -> str:
     """
     Based on Figure 2: Management in the case that TCB/TSB is below phototherapy threshold during
     birth admission for infants >= 12 hours old who have never been on phototherapy

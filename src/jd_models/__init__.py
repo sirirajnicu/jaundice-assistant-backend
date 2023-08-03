@@ -4,6 +4,11 @@ from enum import Enum
 from typing import Tuple
 
 
+class AdmissionType(Enum):
+    BIRTH_ADMISSION = 0
+    READMISSION = 1
+
+
 class Gender(Enum):
     MALE = 0
     FEMALE = 1
@@ -34,6 +39,8 @@ class Patient:
     gestational_age: int
     birth_date_time: datetime
 
+    admission_type: AdmissionType
+
     tcb_value: list[float]
     tsb_value: list[float]
 
@@ -44,6 +51,18 @@ class Patient:
 
     def age(self) -> timedelta:
         return datetime.now() - self.birth_date_time
+
+    def age_at_start_of_photo(self) -> None or timedelta:
+        if self.photo_therapy_timing is None:
+            return None
+
+        return self.photo_therapy_timing[0] - self.birth_date_time
+
+    def has_hemolytic_diseases(self) -> bool:
+        return False
+
+    def had_photo_during_birth_admission(self) -> bool:
+        return False
 
     @staticmethod
     def default():
