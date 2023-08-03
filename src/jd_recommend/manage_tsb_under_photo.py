@@ -8,10 +8,12 @@ from recommend_utils import is_within_96hrs_after_phototherapy, \
 
 def tsb_lt_threshold_with_photo(patient: Patient,
                                 photo_threshold: float) -> str or list[str]:
+    """
+    Based on Figure 3 - left arm
+    """
     tsb_diff = photo_threshold - patient.tsb_value[-1]
-    if tsb_diff < 0:
-        return "No treatment"
-    elif tsb_diff < 2.0:
+
+    if tsb_diff < 2.0:
         return [
             "Continue phototherapy",
             "Follow TSB/shielded TCB in 12-24 hours based on age," +
@@ -29,6 +31,9 @@ def tsb_lt_threshold_with_photo(patient: Patient,
 
 def tsb_lt_threshold_no_photo(patient: Patient,
                               photo_threshold: float) -> str or list[str]:
+    """
+    Based on Figure 3 - right arm
+    """
     if is_within_96hrs_after_phototherapy(patient):
         return "Follow TSB/TCB according to rebound risk and trajectory"
 
