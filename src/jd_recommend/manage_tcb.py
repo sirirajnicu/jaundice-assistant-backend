@@ -10,9 +10,9 @@ def handle_tcb_lt_photo_threshold(patient: Patient,
     if tcb_within_lt3_geq15_from_threshold(patient.tcb_value, photo_threshold):
         return "Conduct TSB and consult Clinician"
 
-    elif (compute_first_day_tcb(patient) > 0.3 or
-          compute_later_tcb(patient) > 0.2 or
-          jx_within_first_24(patient)):
+    if (compute_first_day_tcb(patient) > 0.3 or
+            compute_later_tcb(patient) > 0.2 or
+            jx_within_first_24(patient)):
         treatments = [
             "TSB + consult clinician",
             "CBC, blood smear, reti count if never been tested",
@@ -62,6 +62,9 @@ def handle_tcb_geq_photo_threshold(patient: Patient,
 def recommend_from_tcb(patient: Patient,
                        photo_threshold: float,
                        blood_threshold: float) -> str or list[str]:
+    """
+    Based on Figure 1: Management after obtaining TCB results
+    """
     if patient is None or len(patient.tcb_value) <= 0:
         raise ValueError("Invalid Patient object")
 

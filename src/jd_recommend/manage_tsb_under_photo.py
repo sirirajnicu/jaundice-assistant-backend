@@ -33,8 +33,8 @@ def tsb_lt_threshold_no_photo(patient: Patient,
         return "Follow TSB/TCB according to rebound risk and trajectory"
 
     elif (compute_first_day_tcb(patient) > 0.3 or
-            compute_later_tcb(patient) > 0.2 or
-            jx_within_first_24(patient)):
+          compute_later_tcb(patient) > 0.2 or
+          jx_within_first_24(patient)):
         treatments = [
             "TSB + consult clinician",
             "CBC, blood smear, reti count",
@@ -50,6 +50,9 @@ def tsb_lt_threshold_no_photo(patient: Patient,
 
 def tsb_under_threshold(patient: Patient,
                         photo_threshold: float) -> str or list[str]:
+    """
+    Based on Figure 3: Management of TSB levels that are below phototherapy threshold
+    """
     if patient_between_phototherapy(patient):
         return tsb_lt_threshold_no_photo(patient, photo_threshold)
     else:
