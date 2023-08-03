@@ -4,6 +4,7 @@ from recommend_utils import is_within_96hrs_after_phototherapy, \
     jx_within_first_24, \
     compute_first_day_tcb, \
     compute_later_tcb
+from follow_up_after_off_photo import manage_follow_up_after_off_photo
 
 
 def tsb_lt_threshold_with_photo(patient: Patient,
@@ -35,7 +36,7 @@ def tsb_lt_threshold_no_photo(patient: Patient,
     Based on Figure 3 - right arm
     """
     if is_within_96hrs_after_phototherapy(patient):
-        return "Follow TSB/TCB according to rebound risk and trajectory"
+        return "Follow up on TSB/TCB " + manage_follow_up_after_off_photo(patient)
 
     elif (compute_first_day_tcb(patient) > 0.3 or
           compute_later_tcb(patient) > 0.2 or
