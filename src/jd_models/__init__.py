@@ -42,6 +42,9 @@ class Patient:
 
     neuro_risk: NeurotoxicityRisk
 
+    def age(self) -> timedelta:
+        return datetime.now() - self.birth_date_time
+
     @staticmethod
     def default():
         return Patient(
