@@ -54,8 +54,8 @@ def tsb_lt_threshold_no_photo(patient: Patient,
         return "TSB/TCB follow-up"
 
 
-def tsb_under_threshold(patient: Patient,
-                        photo_threshold: float) -> str or list[str]:
+def manage_tsb_under_threshold(patient: Patient,
+                               photo_threshold: float) -> str or list[str]:
     """
     Based on Figure 3: Management of TSB levels that are below phototherapy threshold
     """
