@@ -56,7 +56,7 @@ def manage_tsb_over_threshold(patient: Patient, exchange_threshold: float) -> st
     """
     Based on Figure 4: Managements of TSB levels that are exceeding phototherapy threshold
     """
-    if patient.tsb_value[-1] >= exchange_threshold:
+    if patient.tsb_value[-1].data >= exchange_threshold:
         return [
             "Put on double phototherapy STAT and exchange transfusion",
             "NPO, central line while on photo",
@@ -65,7 +65,7 @@ def manage_tsb_over_threshold(patient: Patient, exchange_threshold: float) -> st
             "Follow up on TSB values every 2 hours until > 2mg/dL below exchange threshold",
         ]
 
-    tsb_diff = exchange_threshold - patient.tsb_value[-1]
+    tsb_diff = exchange_threshold - patient.tsb_value[-1].data
     if tsb_diff > 2.0:
         return handle_far_below_threshold(patient)
     else:

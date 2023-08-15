@@ -12,7 +12,7 @@ def tsb_lt_threshold_with_photo(patient: Patient,
     """
     Based on Figure 3 - left arm
     """
-    tsb_diff = photo_threshold - patient.tsb_value[-1]
+    tsb_diff = photo_threshold - patient.tsb_value[-1].data
 
     if tsb_diff < 2.0:
         return [

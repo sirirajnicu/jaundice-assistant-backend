@@ -7,7 +7,7 @@ from recommend_utils import tcb_within_lt3_geq15_from_threshold, \
 
 def handle_tcb_lt_photo_threshold(patient: Patient,
                                   photo_threshold: float) -> str or list[str]:
-    if tcb_within_lt3_geq15_from_threshold(patient.tcb_value, photo_threshold):
+    if tcb_within_lt3_geq15_from_threshold(patient.tcb_value[-1].data, photo_threshold):
         return "Conduct TSB and consult Clinician"
 
     if (compute_first_day_tcb(patient) > 0.3 or
@@ -28,7 +28,7 @@ def handle_tcb_lt_photo_threshold(patient: Patient,
 
 def handle_tcb_geq_photo_threshold(patient: Patient,
                                    blood_threshold: float) -> str or list[str]:
-    diff_from_threshold = patient.tcb_value - blood_threshold
+    diff_from_threshold = patient.tcb_value[-1].data - blood_threshold
 
     if diff_from_threshold < -2.0:
         treatments = [
@@ -68,7 +68,7 @@ def recommend_from_tcb(patient: Patient,
     if patient is None or len(patient.tcb_value) <= 0:
         raise ValueError("Invalid Patient object")
 
-    if patient.tcb_value[-1] < photo_threshold:
+    if patient.tcb_value[-1].data < photo_threshold:
         return handle_tcb_lt_photo_threshold(patient, photo_threshold)
     else:
         return handle_tcb_geq_photo_threshold(patient, blood_threshold)

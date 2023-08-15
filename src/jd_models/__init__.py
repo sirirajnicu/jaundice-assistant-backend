@@ -1,7 +1,18 @@
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from enum import Enum
-from typing import Tuple
+from typing import List, Tuple, TypeVar
+
+T = TypeVar("T")
+
+
+@dataclass
+class Record(Tuple[datetime, T]):
+    time: datetime
+    data: T
+
+
+Records = List[Record[T]]
 
 
 class AdmissionType(Enum):
@@ -30,9 +41,6 @@ class Threshold(Enum):
     EXCHANGE = 1
 
 
-StartEndTime = Tuple[datetime, datetime]
-
-
 @dataclass
 class Patient:
     gender: Gender
@@ -41,10 +49,10 @@ class Patient:
 
     admission_type: AdmissionType
 
-    tcb_value: list[float]
-    tsb_value: list[float]
+    tcb_value: Records[float]
+    tsb_value: Records[float]
 
-    photo_therapy_timing: StartEndTime or None
+    photo_therapy_record: Records[float]
     on_photo_therapy: PhototherapyType
 
     neuro_risk: NeurotoxicityRisk
@@ -53,10 +61,10 @@ class Patient:
         return datetime.now() - self.birth_date_time
 
     def age_at_start_of_photo(self) -> None or timedelta:
-        if self.photo_therapy_timing is None:
+        if self.photo_therapy_record is None:
             return None
 
-        return self.photo_therapy_timing[0] - self.birth_date_time
+        return self.photo_therapy_record[0].time - self.birth_date_time
 
     def has_hemolytic_diseases(self) -> bool:
         return False

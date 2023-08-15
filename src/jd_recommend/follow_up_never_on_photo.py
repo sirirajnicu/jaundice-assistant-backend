@@ -16,9 +16,9 @@ def manage_follow_up_never_on_photo(patient: Patient, photo_threshold: float,
     """
     match bilirubin_type_to_check:
         case BilirubinType.TCB:
-            b_difference = round(photo_threshold - patient.tcb_value[-1], 1)
+            b_difference = round(photo_threshold - patient.tcb_value[-1].data, 1)
         case BilirubinType.TSB:
-            b_difference = round(photo_threshold - patient.tsb_value[-1], 1)
+            b_difference = round(photo_threshold - patient.tsb_value[-1].data, 1)
         case _:
             raise ValueError("Invalid bilirubin type")
 
