@@ -1,9 +1,4 @@
 from src.jd_models import Patient, PhototherapyType, Gender
-from recommend_utils import is_within_96hrs_after_phototherapy, \
-    patient_between_phototherapy, \
-    jx_within_first_24, \
-    compute_first_day_tcb, \
-    compute_later_tcb
 from follow_up_after_off_photo import manage_follow_up_after_off_photo
 
 
@@ -20,7 +15,7 @@ def tsb_lt_threshold_with_photo(patient: Patient,
             "Follow TSB/shielded TCB in 12-24 hours based on age," +
             "neurotoxic risk, TSB and TCB trajectory"
         ]
-    elif patient.on_photo_therapy == PhototherapyType.SINGLE:
+    elif patient.photo_therapy_record[-1].data == PhototherapyType.SINGLE:
         return "Off photo and follow-up"
     else:
         return [
@@ -30,17 +25,16 @@ def tsb_lt_threshold_with_photo(patient: Patient,
         ]
 
 
-def tsb_lt_threshold_no_photo(patient: Patient,
-                              photo_threshold: float) -> str or list[str]:
+def tsb_lt_threshold_no_photo(patient: Patient) -> str or list[str]:
     """
     Based on Figure 3 - right arm
     """
-    if is_within_96hrs_after_phototherapy(patient):
+    if patient.is_within_96hrs_after_phototherapy():
         return "Follow up on TSB/TCB " + manage_follow_up_after_off_photo(patient)
 
-    elif (compute_first_day_tcb(patient) > 0.3 or
-          compute_later_tcb(patient) > 0.2 or
-          jx_within_first_24(patient)):
+    elif (patient.change_rate_first_day() > 0.3 or
+          patient.change_rate_after_first_day() > 0.2 or
+          patient.had_jaundice_within_first_24hrs()):
         treatments = [
             "TSB + consult clinician",
             "CBC, blood smear, reti count",
@@ -59,7 +53,7 @@ def manage_tsb_under_threshold(patient: Patient,
     """
     Based on Figure 3: Management of TSB levels that are below phototherapy threshold
     """
-    if patient_between_phototherapy(patient):
-        return tsb_lt_threshold_no_photo(patient, photo_threshold)
+    if patient.is_between_photo_therapy():
+        return tsb_lt_threshold_no_photo(patient)
     else:
         return tsb_lt_threshold_with_photo(patient, photo_threshold)

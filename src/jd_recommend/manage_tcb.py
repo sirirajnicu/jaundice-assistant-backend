@@ -1,8 +1,10 @@
 from src.jd_models import Patient, Gender
-from recommend_utils import tcb_within_lt3_geq15_from_threshold, \
-    compute_first_day_tcb, \
-    compute_later_tcb, \
-    jx_within_first_24
+
+
+def tcb_within_lt3_geq15_from_threshold(tcb_value: float,
+                                        photo_threshold: float) -> bool:
+    threshold_diff = photo_threshold - tcb_value
+    return threshold_diff <= 3.0 or tcb_value >= 15.0
 
 
 def handle_tcb_lt_photo_threshold(patient: Patient,
@@ -10,9 +12,9 @@ def handle_tcb_lt_photo_threshold(patient: Patient,
     if tcb_within_lt3_geq15_from_threshold(patient.tcb_value[-1].data, photo_threshold):
         return "Conduct TSB and consult Clinician"
 
-    if (compute_first_day_tcb(patient) > 0.3 or
-            compute_later_tcb(patient) > 0.2 or
-            jx_within_first_24(patient)):
+    if (patient.change_rate_first_day() > 0.3 or
+            patient.change_rate_after_first_day() > 0.2 or
+            patient.had_jaundice_within_first_24hrs()):
         treatments = [
             "TSB + consult clinician",
             "CBC, blood smear, reti count if never been tested",
