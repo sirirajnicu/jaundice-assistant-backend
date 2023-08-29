@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from datetime import datetime, timedelta
-from enum import Enum
+from aenum import Enum
 from typing import List, Tuple, TypeVar
 
 T = TypeVar("T")
@@ -14,31 +14,11 @@ class Record(Tuple[datetime, T]):
 
 Records = List[Record[T]]
 
-
-class AdmissionType(Enum):
-    BIRTH_ADMISSION = 0
-    READMISSION = 1
-
-
-class Gender(Enum):
-    MALE = 0
-    FEMALE = 1
-
-
-class PhototherapyType(Enum):
-    NONE = 0
-    SINGLE = 1
-    DOUBLE = 2
-
-
-class NeurotoxicityRisk(Enum):
-    NO_RISK = 0
-    AT_RISK = 2
-
-
-class Threshold(Enum):
-    PHOTO = 0
-    EXCHANGE = 1
+AdmissionType = Enum("AdmissionType", "BIRTH_ADMISSION READMISSION")
+Gender = Enum("Gender", "MALE FEMALE")
+PhototherapyType = Enum("PhototherapyType", "NONE SINGLE DOUBLE")
+NeurotoxicityRisk = Enum("NeurotoxicityRisk", "NO_RISK AT_RISK")
+Threshold = Enum("Threshold", "PHOTO EXCHANGE")
 
 
 def is_off_photo(record: Record[PhototherapyType]) -> bool:
