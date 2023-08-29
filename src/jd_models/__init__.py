@@ -41,6 +41,10 @@ class Threshold(Enum):
     EXCHANGE = 1
 
 
+def is_off_photo(record: Record[PhototherapyType]) -> bool:
+    return record.data is PhototherapyType.NONE
+
+
 @dataclass
 class Patient:
     gender: Gender
@@ -52,7 +56,7 @@ class Patient:
     tcb_value: Records[float]
     tsb_value: Records[float]
 
-    photo_therapy_record: Records[PhototherapyType] or None
+    photo_therapy_record: Records[PhototherapyType]
 
     neuro_risk: NeurotoxicityRisk
 
@@ -61,10 +65,12 @@ class Patient:
         return datetime.now() - self.birth_date_time
 
     def age_at_start_of_photo(self) -> None or timedelta:
-        if self.photo_therapy_record is None:
+        if len(self.photo_therapy_record) <= 0:
+            return None
+        if self.photo_therapy_record[-1].data == PhototherapyType.NONE:
             return None
 
-        return self.photo_therapy_record[0].time - self.birth_date_time
+        return self.photo_therapy_record[-1].time - self.birth_date_time
 
     # conditions
     def has_hemolytic_diseases(self) -> bool:
@@ -137,22 +143,20 @@ class Patient:
 
     # phototherapy-related
     def is_between_photo_therapy(self) -> bool:
-        if self.photo_therapy_record is None or len(self.photo_therapy_record) <= 0:
+        if len(self.photo_therapy_record) <= 0:
             return False
 
         return not (self.photo_therapy_record[-1].data is PhototherapyType.NONE)
 
     def is_within_96hrs_after_phototherapy(self) -> bool:
-        if self.photo_therapy_record is None or len(self.photo_therapy_record) <= 0:
+        if len(self.photo_therapy_record) <= 0:
             return False
+        if self.is_between_photo_therapy():
+            return True
 
-        def is_on_photo(record: Record[PhototherapyType]) -> bool:
-            return record.data is not PhototherapyType.NONE
-
-        all_on_photos = list(filter(is_on_photo, self.photo_therapy_record))
-
-        return (not len(all_on_photos) <= 0) and \
-            (datetime.now() - all_on_photos[-1].time < timedelta(hours=96))
+        last_off_photo: Record[PhototherapyType] = list(filter(is_off_photo, self.photo_therapy_record))[-1]
+        return (not len(last_off_photo) <= 0) and \
+            (datetime.now() - last_off_photo.time <= timedelta(hours=96))
 
     @staticmethod
     def default():
@@ -163,6 +167,6 @@ class Patient:
             admission_type=AdmissionType.BIRTH_ADMISSION,
             tcb_value=[],
             tsb_value=[],
-            photo_therapy_record=None,
+            photo_therapy_record=[],
             neuro_risk=NeurotoxicityRisk.NO_RISK,
         )

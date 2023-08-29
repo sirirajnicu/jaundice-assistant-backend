@@ -9,7 +9,7 @@ def handle_far_below_threshold(patient: Patient) -> str or list[str]:
         "Follow TSB/shielded TCB for 12-24 hours based on age and TCB/TSB trajectory",
         "PE and work for causes"
     ]
-    match patient.on_photo_therapy:
+    match patient.photo_therapy_record[-1]:
         case PhototherapyType.NONE:
             treatments.append("Put on photo")
         case PhototherapyType.SINGLE:
@@ -30,7 +30,7 @@ def handle_close_below_threshold(patient: Patient) -> str or list[str]:
     Based on Figure 4 - middle arm
     """
     treatments = []
-    match patient.on_photo_therapy:
+    match patient.photo_therapy_record[-1]:
         case PhototherapyType.NONE:
             treatments.append("Put on double photo STAT")
         case PhototherapyType.SINGLE:
