@@ -1,21 +1,28 @@
 from src.jd_models import Patient, PhototherapyType
+from src.jd_models.treatment import TreatmentType, generate_treatment_msg
+from typing import List
 
 
-def handle_far_below_threshold(patient: Patient) -> str or list[str]:
+def handle_far_below_threshold(patient: Patient) -> List[TreatmentType]:
     """
     Based on Figure 4 - left arm
     """
-    treatments = [
-        "Follow TSB/shielded TCB for 12-24 hours based on age and TCB/TSB trajectory",
-        "PE and work for causes"
+    treatments: List[TreatmentType] = [
+        TreatmentType.TSB_SHIELDED_TCB_BY_RISK,
+        TreatmentType.PE,
+        TreatmentType.WORK_UP,
     ]
-    match patient.photo_therapy_record[-1]:
-        case PhototherapyType.NONE:
-            treatments.append("Put on photo")
-        case PhototherapyType.SINGLE:
-            treatments.append("Consider switching to double photo")
-        case PhototherapyType.DOUBLE:
-            treatments.append("Increase photo efficiency")
+
+    if len(patient.photo_therapy_record) > 0:
+        match patient.photo_therapy_record[-1].data:
+            case PhototherapyType.NONE:
+                treatments.append(TreatmentType.ON_PHOTO)
+            case PhototherapyType.SINGLE:
+                treatments.append(TreatmentType.DOUBLE_PHOTO)
+            case PhototherapyType.DOUBLE:
+                treatments.append(TreatmentType.INCR_PHOTO_INTENSITY)
+    else:
+        treatments.append(TreatmentType.ON_PHOTO)
 
     return treatments
 
@@ -25,48 +32,59 @@ def request_bind_score() -> float:
     return 0.0
 
 
-def handle_close_below_threshold(patient: Patient) -> str or list[str]:
+def handle_close_below_threshold(patient: Patient) -> List[TreatmentType]:
     """
     Based on Figure 4 - middle arm
     """
-    treatments = []
-    match patient.photo_therapy_record[-1]:
-        case PhototherapyType.NONE:
-            treatments.append("Put on double photo STAT")
-        case PhototherapyType.SINGLE:
-            treatments.append("Consider switching to double photo")
-        case PhototherapyType.DOUBLE:
-            treatments.append("Consider increasing photo intensity")
+    treatments: List[TreatmentType] = []
+    if len(patient.photo_therapy_record) > 0:
+        match patient.photo_therapy_record[-1].data:
+            case PhototherapyType.NONE:
+                treatments.append(TreatmentType.DOUBLE_PHOTO_STAT)
+            case PhototherapyType.SINGLE:
+                treatments.append(TreatmentType.DOUBLE_PHOTO)
+            case PhototherapyType.DOUBLE:
+                treatments.append(TreatmentType.INCR_PHOTO_INTENSITY)
+    else:
+        treatments.append(TreatmentType.DOUBLE_PHOTO_STAT)
 
     if request_bind_score() >= 4:
-        treatments.append("Do an exchange transfusion")
+        treatments.append(TreatmentType.EXCHANGE_TRANSFUSION)
     else:
         treatments.extend([
-            "Continue phototherapy",
-            "Consider exchange transfusion if A/B ratio is high",
-            "NPO, peripheral IV",
-            "Cross-matched (1-2 hours of waiting time)",
-            "PE and work up for cause",
-            "Follow up on TSB values every 2 hours until > 2mg/dL below exchange threshold",
-            "Consider IVIG in infants with DAT positive"
+            TreatmentType.CONT_PHOTO,
+            TreatmentType.EXCHANGE_BY_BA_RATIO_WITH_TIMING,
+            TreatmentType.NPO_AND_PERIPHERAL_IV,
+            TreatmentType.CROSS_MATCH,
+            TreatmentType.PE,
+            TreatmentType.WORK_UP,
+            TreatmentType.TSB_2_HOURS,
+            TreatmentType.IVIG,
         ])
 
+    return treatments
 
-def manage_tsb_over_threshold(patient: Patient, exchange_threshold: float) -> str or list[str]:
+
+def recommend_tsb_over_threshold(patient: Patient, exchange_threshold: float) -> List[str]:
     """
     Based on Figure 4: Managements of TSB levels that are exceeding phototherapy threshold
     """
-    if patient.tsb_value[-1].data >= exchange_threshold:
-        return [
-            "Put on double phototherapy STAT and exchange transfusion",
-            "NPO, central line while on photo",
-            "Cross-matched (1-2 hours of waiting time)",
-            "PE and work up for cause",
-            "Follow up on TSB values every 2 hours until > 2mg/dL below exchange threshold",
-        ]
-
+    treatments: List[TreatmentType] = []
     tsb_diff = exchange_threshold - patient.tsb_value[-1].data
-    if tsb_diff > 2.0:
-        return handle_far_below_threshold(patient)
+
+    if patient.tsb_value[-1].data >= exchange_threshold:
+        treatments.extend([
+            TreatmentType.DOUBLE_PHOTO_STAT,
+            TreatmentType.EXCHANGE_TRANSFUSION,
+            TreatmentType.NPO_CENTRAL,
+            TreatmentType.CROSS_MATCH,
+            TreatmentType.PE,
+            TreatmentType.WORK_UP,
+            TreatmentType.TSB_2_HOURS,
+        ])
+    elif tsb_diff > 2.0:
+        treatments.extend(handle_far_below_threshold(patient))
     else:
-        return handle_close_below_threshold(patient)
+        treatments.extend(handle_close_below_threshold(patient))
+
+    return generate_treatment_msg(treatments, patient)
