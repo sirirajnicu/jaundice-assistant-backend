@@ -4,7 +4,7 @@ from patient import Patient
 
 
 class TreatmentType(AutoNumberEnum):
-    WORK_UP = ()  # CBC, blood smear, reti count, blood group, DAT
+    WORK_UP = ()
     G6PD = ()
     TB_DB_ALBUMIN = ()
     PE = ()
@@ -44,13 +44,15 @@ BASE_MSG_DB: Dict[TreatmentType, str] = {
     TreatmentType.PE: "PE and work for causes",
 
     TreatmentType.RUSHED_BLOOD_TEST: "Rushed blood test after admission",
-    TreatmentType.GROUP_MATCH_AND_PREP_TRANSFUSION: "Group match and prepare for exchange transfusion after seeing TB/DB results",
+    TreatmentType.GROUP_MATCH_AND_PREP_TRANSFUSION: "Group match and prepare for exchange transfusion after seeing "
+                                                    "TB/DB results",
     TreatmentType.CROSS_MATCH: "Cross-matched (1-2 hours for result)",
 
     TreatmentType.TSB_THEN_CONSULT: "Conduct TSB and consult with clinician",
     TreatmentType.TSB_2_HOURS: "Follow up on TSB values every 2 hours until > 2mg/dL below exchange threshold",
     TreatmentType.TCB_WITH_TIMING: "Follow up on TCB",
-    TreatmentType.TSB_SHIELDED_TCB_BY_RISK: "Follow TSB/shielded TCB for 12-24 hours based on age and TCB/TSB trajectory",
+    TreatmentType.TSB_SHIELDED_TCB_BY_RISK: "Follow TSB/shielded TCB for 12-24 hours based on age and TCB/TSB "
+                                            "trajectory",
     TreatmentType.TCSB_WITH_TIMING: "Follow up on TSB/TCB",
 
     TreatmentType.TO_EMERGENCY: "Admit to emergency neonatal units to apply phototherapy",
