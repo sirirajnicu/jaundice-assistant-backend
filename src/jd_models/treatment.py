@@ -1,6 +1,8 @@
 from aenum import AutoNumberEnum
 from typing import Dict, List
 from patient import Patient
+from src.jd_recommend.follow_up_never_on_photo import manage_follow_up_never_on_photo, BilirubinType
+from src.jd_recommend.follow_up_after_off_photo import manage_follow_up_after_off_photo
 
 
 class TreatmentType(AutoNumberEnum):
@@ -23,7 +25,6 @@ class TreatmentType(AutoNumberEnum):
 
     ON_PHOTO = ()
     CONT_PHOTO = ()
-    ON_SINGLE_WITH_TIMING = ()
     DOUBLE_PHOTO = ()
     DOUBLE_PHOTO_STAT = ()
     INCR_PHOTO_INTENSITY = ()
@@ -34,7 +35,7 @@ class TreatmentType(AutoNumberEnum):
     NPO_CENTRAL = ()
     IVIG = ()
     EXCHANGE_TRANSFUSION = ()
-    EXCHANGE_BY_BA_RATIO_WITH_TIMING = ()
+    EXCHANGE_BY_BA_RATIO = ()
 
 
 BASE_MSG_DB: Dict[TreatmentType, str] = {
@@ -59,7 +60,6 @@ BASE_MSG_DB: Dict[TreatmentType, str] = {
 
     TreatmentType.ON_PHOTO: "Put on phototherapy",
     TreatmentType.CONT_PHOTO: "Continue phototherapy",
-    TreatmentType.ON_SINGLE_WITH_TIMING: "Put on phototherapy",
     TreatmentType.DOUBLE_PHOTO: "Put on double phototherapy",
     TreatmentType.DOUBLE_PHOTO_STAT: "Put on double phototherapy STAT",
     TreatmentType.INCR_PHOTO_INTENSITY: "Consider increasing photo intensity",
@@ -70,9 +70,25 @@ BASE_MSG_DB: Dict[TreatmentType, str] = {
     TreatmentType.NPO_CENTRAL: "Consult with a newborn fellow for considering doing a central line as they see fit",
     TreatmentType.IVIG: "Consider IVIG in infants with positive DAT",
     TreatmentType.EXCHANGE_TRANSFUSION: "Conduct exchange transfusion",
-    TreatmentType.EXCHANGE_BY_BA_RATIO_WITH_TIMING: "Consider exchange transfusion if A/B ratio is high",
+    TreatmentType.EXCHANGE_BY_BA_RATIO: "Consider exchange transfusion if A/B ratio is high",
 }
 
 
-def generate_treatment_msg(tts: List[TreatmentType], patient: Patient) -> List[str]:
-    pass
+def generate_treatment_msgs(tts: List[TreatmentType],
+                            patient: Patient,
+                            photo_threshold: float = 0.0,
+                            bilirubin_type: BilirubinType = BilirubinType.TSB) -> List[str]:
+    def generate_treatment_msg(treatment: TreatmentType) -> str:
+        timing = ""
+        match treatment:
+            case TreatmentType.TCB_WITH_TIMING:
+                timing = manage_follow_up_never_on_photo(patient, photo_threshold, bilirubin_type)
+            case TreatmentType.TCSB_WITH_TIMING:
+                timing = manage_follow_up_after_off_photo(patient)
+            case TreatmentType.OFF_PHOTO_WITH_TIMING:
+                timing = manage_follow_up_after_off_photo(patient)
+            case TreatmentType.EXCHANGE_BY_BA_RATIO:
+                ...
+        return BASE_MSG_DB[treatment] + timing
+
+    return [generate_treatment_msg(tt) for tt in tts]

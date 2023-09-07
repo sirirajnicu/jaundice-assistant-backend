@@ -1,5 +1,5 @@
 from src.jd_models import Patient, PhototherapyType, Gender
-from src.jd_models.treatment import TreatmentType, generate_treatment_msg
+from src.jd_models.treatment import TreatmentType, generate_treatment_msgs
 from typing import List
 
 
@@ -62,4 +62,4 @@ def recommend_tsb_under_threshold(patient: Patient,
     else:
         treatments.extend(handle_tsb_lt_threshold_with_photo(patient, photo_threshold))
 
-    return generate_treatment_msg(treatments, patient)
+    return generate_treatment_msgs(treatments, patient)

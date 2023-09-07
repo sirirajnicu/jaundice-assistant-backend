@@ -1,5 +1,5 @@
 from src.jd_models import Patient, PhototherapyType
-from src.jd_models.treatment import TreatmentType, generate_treatment_msg
+from src.jd_models.treatment import TreatmentType, generate_treatment_msgs
 from typing import List
 
 
@@ -53,7 +53,7 @@ def handle_close_below_threshold(patient: Patient) -> List[TreatmentType]:
     else:
         treatments.extend([
             TreatmentType.CONT_PHOTO,
-            TreatmentType.EXCHANGE_BY_BA_RATIO_WITH_TIMING,
+            TreatmentType.EXCHANGE_BY_BA_RATIO,
             TreatmentType.NPO_AND_PERIPHERAL_IV,
             TreatmentType.CROSS_MATCH,
             TreatmentType.PE,
@@ -87,4 +87,4 @@ def recommend_tsb_over_threshold(patient: Patient, exchange_threshold: float) ->
     else:
         treatments.extend(handle_close_below_threshold(patient))
 
-    return generate_treatment_msg(treatments, patient)
+    return generate_treatment_msgs(treatments, patient)

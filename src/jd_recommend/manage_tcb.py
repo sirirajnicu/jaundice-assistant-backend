@@ -1,5 +1,5 @@
 from src.jd_models import Patient, Gender
-from src.jd_models.treatment import TreatmentType, generate_treatment_msg
+from src.jd_models.treatment import TreatmentType, generate_treatment_msgs
 from typing import List
 
 
@@ -77,4 +77,4 @@ def recommend_from_tcb(patient: Patient,
     else:
         treatments.extend(handle_tcb_geq_photo_threshold(patient, blood_threshold))
 
-    return generate_treatment_msg(treatments, patient)
+    return generate_treatment_msgs(treatments, patient)
