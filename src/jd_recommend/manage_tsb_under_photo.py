@@ -1,5 +1,6 @@
 from src.jd_models import Patient, PhototherapyType, Gender
-from src.jd_models.treatment import TreatmentType, generate_treatment_msgs
+from src.jd_models.treatment import TreatmentType
+from msg_generation import generate_treatment_msgs
 from typing import List
 
 
