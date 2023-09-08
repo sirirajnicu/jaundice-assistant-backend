@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from aenum import Enum
-from typing import List, Tuple, TypeVar
+from typing import List, Tuple, TypeVar, Set
 
 T = TypeVar("T")
 
@@ -14,7 +14,7 @@ class Record(Tuple[datetime, T]):
 
 Records = List[Record[T]]
 
-AdmissionType = Enum("AdmissionType", "BIRTH_ADMISSION READMISSION")
+AdmissionType = Enum("AdmissionType", "BIRTH_ADMISSION READMISSION DISCHARGE")
 Gender = Enum("Gender", "MALE FEMALE")
 PhototherapyType = Enum("PhototherapyType", "NONE SINGLE DOUBLE")
 NeurotoxicityRisk = Enum("NeurotoxicityRisk", "NO_RISK AT_RISK")
@@ -31,14 +31,13 @@ class Patient:
     gestational_age: int
     birth_date_time: datetime
 
-    admission_type: AdmissionType
+    neuro_risk: Set[NeurotoxicityRisk]
 
     tcb_value: Records[float]
     tsb_value: Records[float]
-
+    albumin_value: Records[float]
     photo_therapy_record: Records[PhototherapyType]
-
-    neuro_risk: NeurotoxicityRisk
+    admission_record: Records[AdmissionType]
 
     # "getters"
     def age(self) -> timedelta:
@@ -57,7 +56,16 @@ class Patient:
         return False
 
     def had_photo_during_birth_admission(self) -> bool:
-        return False
+        if len(self.admission_record) < 1 or self.admission_record[0].data is not AdmissionType.BIRTH_ADMISSION:
+            return False
+
+        discharge_time = datetime.now() \
+            if len(self.admission_record) < 2 or self.admission_record[1].data is not AdmissionType.DISCHARGE \
+            else self.admission_record[1].time
+
+        photo_during_birth_admission = [rec for rec in self.photo_therapy_record
+                                        if rec.time <= discharge_time and rec.data is not PhototherapyType.NONE]
+        return len(photo_during_birth_admission) > 0
 
     def had_jaundice_within_first_24hrs(self) -> bool:
         first_24hrs_values = self._first_24hrs_tcb()
@@ -138,15 +146,19 @@ class Patient:
         return (not len(last_off_photo) <= 0) and \
             (datetime.now() - last_off_photo.time <= timedelta(hours=96))
 
+    def compute_ba_ratio(self) -> float:
+        return self.tsb_value[-1].data / self.albumin_value[-1].data
+
     @staticmethod
     def default():
         return Patient(
             gender=Gender.MALE,
             gestational_age=35,
             birth_date_time=datetime.now() - timedelta(days=2, seconds=60 * 60 * 3),
-            admission_type=AdmissionType.BIRTH_ADMISSION,
+            neuro_risk=NeurotoxicityRisk.NO_RISK,
             tcb_value=[],
             tsb_value=[],
+            albumin_value=[],
             photo_therapy_record=[],
-            neuro_risk=NeurotoxicityRisk.NO_RISK,
+            admission_record=[],
         )

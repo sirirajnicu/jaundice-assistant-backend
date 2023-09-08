@@ -67,5 +67,5 @@ BASE_MSG_DB: Dict[TreatmentType, str] = {
     TreatmentType.NPO_CENTRAL: "Consult with a newborn fellow for considering doing a central line as they see fit",
     TreatmentType.IVIG: "Consider IVIG in infants with positive DAT",
     TreatmentType.EXCHANGE_TRANSFUSION: "Conduct exchange transfusion",
-    TreatmentType.EXCHANGE_BY_BA_RATIO: "Consider exchange transfusion if A/B ratio is high",
+    TreatmentType.EXCHANGE_BY_BA_RATIO: "",
 }

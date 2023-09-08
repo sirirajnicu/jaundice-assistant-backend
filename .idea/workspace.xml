@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="655afc8e-3611-4b0a-8edf-6e060f2d674a" name="Changes" comment="" />
+    <list default="true" id="655afc8e-3611-4b0a-8edf-6e060f2d674a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jd_models/patient.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/jd_models/patient.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jd_models/treatment.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/jd_models/treatment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jd_recommend/manage_tcb.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/jd_recommend/manage_tcb.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jd_recommend/msg_generation.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/jd_recommend/msg_generation.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,7 +84,7 @@
       <workItem from="1693382540615" duration="4974000" />
       <workItem from="1694063599714" duration="3007000" />
       <workItem from="1694074031113" duration="2278000" />
-      <workItem from="1694104860937" duration="1423000" />
+      <workItem from="1694104860937" duration="4371000" />
     </task>
     <servers />
   </component>

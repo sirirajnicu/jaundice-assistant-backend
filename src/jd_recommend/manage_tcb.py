@@ -1,5 +1,6 @@
 from src.jd_models import Patient, Gender
-from src.jd_models.treatment import TreatmentType, generate_treatment_msgs
+from src.jd_models.treatment import TreatmentType
+from msg_generation import generate_treatment_msgs
 from typing import List
 
 
@@ -16,8 +17,8 @@ def handle_tcb_lt_photo_threshold(patient: Patient,
         treatments.append(TreatmentType.TSB_THEN_CONSULT)
 
     elif (patient.change_rate_first_day() > 0.3 or
-            patient.change_rate_after_first_day() > 0.2 or
-            patient.had_jaundice_within_first_24hrs()):
+          patient.change_rate_after_first_day() > 0.2 or
+          patient.had_jaundice_within_first_24hrs()):
         treatments.extend([
             TreatmentType.TSB_THEN_CONSULT,
             TreatmentType.WORK_UP
@@ -61,7 +62,6 @@ def handle_tcb_geq_photo_threshold(patient: Patient,
         return treatments
 
 
-# TODO: change return type to a treatment class
 def recommend_from_tcb(patient: Patient,
                        photo_threshold: float,
                        blood_threshold: float) -> List[str]:
