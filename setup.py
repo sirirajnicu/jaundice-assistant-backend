@@ -7,7 +7,7 @@ import datetime
 
 if __name__ == "__main__":
     valid_string: str = string.ascii_letters + string.punctuation + string.digits
-    CRED = {"DEBUG": False}
+    CRED = {"DEBUG": True}
     if os.path.exists("cred.yaml"):
         CRED = yaml.load(open("cred.yaml"), Loader=yaml.Loader)
 
