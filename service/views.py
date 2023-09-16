@@ -1,6 +1,6 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
-from service.forms import LoginForm
+from service.forms import LoginForm, SearchForm
 from django.contrib import messages
 
 
@@ -29,16 +29,25 @@ def index(request: HttpRequest) -> HttpResponse:
             #         request, "Invalid username or password.", extra_tags="login-error"
             #     )
         else:
-            messages.error(
-                request, "Invalid username or password.", extra_tags="login-error"
-            )
+            messages.error(request, "Invalid username or password.", extra_tags="error")
         return redirect("service:search", permanent=False)
     else:
-        messages.error(request, " ", extra_tags="login")
+        messages.error(request, " ", extra_tags="error")
 
     return render(request, "views/index.html", context=data)
 
 
 def search(request: HttpRequest) -> HttpResponse:
-    data = {}
+    data = {
+        "SearchForm": SearchForm(auto_id=False),
+    }
+    if request.method == RequestMethod.POST:
+        form = SearchForm(data=request.POST)
+        if form.is_valid():
+            searchid = SearchForm.cleaned_data["searchid"]
+            messages.error(request, "Invalid search term.", extra_tags="error")
+        else:
+            messages.error(request, "Invalid search term.", extra_tags="error")
+    else:
+        messages.error(request, " ", extra_tags="error")
     return render(request, "views/search.html", context=data)
