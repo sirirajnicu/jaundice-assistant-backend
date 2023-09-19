@@ -1,4 +1,4 @@
-from src.jd_models import Patient, PhototherapyType
+from recommender.jd_models import Patient, PhototherapyType
 
 
 def handle_far_below_threshold(patient: Patient) -> str or list[str]:

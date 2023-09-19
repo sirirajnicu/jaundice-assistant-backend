@@ -1,4 +1,4 @@
-from src.jd_models import Patient
+from recommender.jd_models import Patient
 from datetime import timedelta
 from enum import Enum
 

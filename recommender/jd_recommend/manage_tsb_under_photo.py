@@ -1,4 +1,4 @@
-from src.jd_models import Patient, PhototherapyType, Gender
+from recommender.jd_models import Patient, PhototherapyType, Gender
 from follow_up_after_off_photo import manage_follow_up_after_off_photo
 
 

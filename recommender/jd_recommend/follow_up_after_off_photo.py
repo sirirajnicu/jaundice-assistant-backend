@@ -1,4 +1,4 @@
-from src.jd_models import Patient, AdmissionType
+from recommender.jd_models import Patient, AdmissionType
 from datetime import timedelta
 
 
