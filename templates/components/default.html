@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% load static %}
     {% block header %}
-
     {% endblock %}
-    <title>Document</title>
+    <title>
+        {% block title%}{% endblock %}
+    </title>
 </head>
 
 <body>
