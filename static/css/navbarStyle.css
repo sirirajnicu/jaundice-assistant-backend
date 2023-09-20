@@ -1,0 +1,56 @@
+.navbar-custom {
+    height: 50px;
+    font-size: 18px; 
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    background-color: #81D6B7;
+    font-weight: 600;
+    font-family: 'Poppins';
+}
+
+.navbar-title {
+    margin: 10px;
+    font-size: 130%; 
+    text-decoration: none;
+    font-weight: 1000;
+    color: #ffffff;
+    font-family: 'Poppins';
+}
+
+.btn-logout {
+    color: #ffffff;
+    background-color: #ffffff;
+    border-color: #ffffff00;
+    margin-right: 10px;
+    font-weight: 900;
+    font-size: 100%; 
+    color:#60C09E;
+    border-radius: 10px;
+    justify-self: right;
+    font-family: 'Poppins';
+    cursor: pointer
+}
+.btn-logout:hover {
+    color: #ffffff;
+    background-color: #3f9b79;
+    border-color: #ffffff00;
+    transition: color 0.3s ease
+}
+
+.btn-others {
+    margin: 10pt; 
+    color: #ffffff; 
+    text-decoration: none;
+    font-family: 'Poppins';
+    font-weight: 900;
+    font-size: 100%; 
+    background-color: #ffffff00;
+    border-color: #ffffff00;
+    cursor: pointer
+}
+
+.btn-others:hover {
+    color: #3f9b79;
+    transition: color 0.3s ease
+}

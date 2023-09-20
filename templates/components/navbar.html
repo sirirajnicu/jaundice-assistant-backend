@@ -1,0 +1,38 @@
+<html>
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/navbarStyle.css' %}" >
+<link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Poppins' >
+
+{% load static %}
+
+<nav class="navbar navbar-custom">
+    <span class="navbar-title"> Create/Search </span>
+
+    <div>
+        <!-- <a href="#" style="margin: 10pt; color: #ffffff; text-decoration: none"> Search </a> -->
+        <!-- <a href="#" style="margin: 10pt; color: #ffffff; text-decoration: none"> Dashboard </a> -->
+        <a href="HNsearch" style="text-decoration: none;">
+          <button class="btn btn-others" type="submit">Search</button>
+        </a>
+        <button class="btn btn-others" type="submit">Dashboard</button>
+        <button class="btn btn-logout" type="submit"> Logout </button>
+
+    </div>
+    
+
+</nav>
+
+<body>
+    {% block body %}
+    {% endblock %}
+</body>
+
+</html>
+
+<style>
+    body {
+        font-family: "FiraCode-Retina", sans-serif;
+        margin: 0px;
+    }
+</style>
