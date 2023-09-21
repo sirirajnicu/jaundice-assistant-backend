@@ -1,10 +1,7 @@
 {% extends 'components/default.html' %}
 
-{% block header %}
-{% endblock %}
-
-{% block title%}
-index
+{% block head %}
+<title>Login</title>
 {% endblock %}
 
 {% block body %}
@@ -14,6 +11,6 @@ index
     {{ LoginForm.username }}
     {{ LoginForm.password }}
     {{ LoginForm.role }}
-    <button type="submit">Submit</button>
+    <button type="submit">Login</button>
 </form>
 {% endblock %}

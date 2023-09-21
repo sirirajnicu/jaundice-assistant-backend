@@ -1,11 +1,17 @@
 {% extends 'components/default.html' %}
 {% block title%}HN Search{% endblock %}
 
-{% block header %}
-{% include 'components/navbar.html' %}  
+{% block head %}
+
 {% endblock %}
 
 {% block body %}
-
+{% include 'components/navbar.html' %}
 <h2>HNsearch</h2>
+<form method="post">
+    {% csrf_token %}
+    {{SearchForm.searchid}}
+    <button type="submit">Search</button>
+</form>
+{{HN}}
 {% endblock %}
