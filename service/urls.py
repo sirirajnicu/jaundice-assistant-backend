@@ -4,6 +4,7 @@ from service import views
 app_name = "service"
 
 urlpatterns = [
-    path("", views.index, name="index"),
-    path("HNsearch", views.HNsearch, name="HNsearch"),
+    path("", views.login, name="login"),
+    path("logout", views.login, name="logout"),
+    path("HNsearch/", views.HNsearch, name="HNsearch"),
 ]

@@ -12,7 +12,7 @@ class RequestMethod(enumerate):
 
 
 # Create your views here.
-def index(request: HttpRequest) -> HttpResponse:
+def login(request: HttpRequest) -> HttpResponse:
     data = {
         "LoginForm": LoginForm(auto_id=False),
     }
@@ -35,6 +35,11 @@ def index(request: HttpRequest) -> HttpResponse:
         messages.error(request, " ", extra_tags="error")
 
     return render(request, "views/index.html", context=data)
+
+
+def logout(request: HttpRequest) -> HttpResponse:
+    # logic here
+    return redirect("service:logout", permanent=False)
 
 
 def HNsearch(request: HttpRequest) -> HttpResponse:
