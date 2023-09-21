@@ -2,6 +2,10 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 from service.forms import LoginForm, SearchForm
 from django.contrib import messages
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as authlogin
+from django.contrib.auth import logout as authlogout
+from django.contrib.auth.decorators import login_required
 
 
 class RequestMethod(enumerate):
@@ -22,26 +26,26 @@ def login(request: HttpRequest) -> HttpResponse:
             username: str = form.cleaned_data["username"]
             password: str = form.cleaned_data["password"]
             role: str = form.cleaned_data["role"]
-            # if True:
-            #     return redirect("service:search", permanent=False)
-            # else:
-            #     messages.error(
-            #         request, "Invalid username or password.", extra_tags="login-error"
-            #     )
+            user = authenticate(request, username=username, password=password)
+            print(user)
+            if user is not None:
+                authlogin(request, user)
+                request.session["role"] = role
+                return redirect("service:HNsearch")
         else:
             messages.error(request, "Invalid username or password.", extra_tags="error")
-        return redirect("service:search", permanent=False)
     else:
         messages.error(request, " ", extra_tags="error")
-
     return render(request, "views/index.html", context=data)
 
 
+@login_required
 def logout(request: HttpRequest) -> HttpResponse:
-    # logic here
-    return redirect("service:logout", permanent=False)
+    authlogout(request)
+    return redirect("/")
 
 
+@login_required
 def HNsearch(request: HttpRequest) -> HttpResponse:
     data = {
         "SearchForm": SearchForm(auto_id=False),
