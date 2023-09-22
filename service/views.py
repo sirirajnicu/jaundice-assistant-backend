@@ -47,6 +47,7 @@ def logout(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def HNsearch(request: HttpRequest) -> HttpResponse:
+    ANmap = {"1":[1.1, 1.2, 1.3], "2":[2.1, 2.2],"3":[]}
     data = {
         "SearchForm": SearchForm(auto_id=False),
     }
@@ -55,8 +56,8 @@ def HNsearch(request: HttpRequest) -> HttpResponse:
         if form.is_valid():
             searchid = form.cleaned_data["searchid"]
             data["HN"] = searchid
+            data["ANlist"] = ANmap[data["HN"]]
             messages.error(request, "Invalid search term.", extra_tags="error")
-
         else:
             messages.error(request, "Invalid search term.", extra_tags="error")
         return render(request, "views/HNsearch.html", context=data)

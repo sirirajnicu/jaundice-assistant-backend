@@ -1,17 +1,39 @@
-{% extends 'components/default.html' %}
+{% extends 'components/default.html'%}
 {% block title%}HN Search{% endblock %}
 
 {% block head %}
-
 {% endblock %}
 
 {% block body %}
+
+{% with pageName="Create/Search" %}
 {% include 'components/navbar.html' %}
-<h2>HNsearch</h2>
-<form method="post">
-    {% csrf_token %}
-    {{SearchForm.searchid}}
-    <button type="submit">Search</button>
-</form>
-{{HN}}
+{% endwith %}
+
+<h2 style='margin-top: 2pc; margin-left: 20%; margin-bottom: 1pc'>HN search</h2>
+
+<div style="text-align: center">
+    <form method="post">
+        {% csrf_token %}
+        {{SearchForm.searchid}}
+        <button class="btn-logout" type="submit" style='background-color: #FF881C; color: #FFFFFF'>Search</button>
+    </form>
+
+    <h4 style='margin-top: 1pc; margin-left: 20%; margin-bottom: 1pc; text-align: left'>existing AN for {{HN}}</h4>
+
+
+<div class="overflow-scroll">
+    <div style="width: 50%;">
+        {% for an in ANlist %}
+            <div class="card" style="background-color: #F2F2F2; margin: 1pc; padding: 1pc;">
+                <a class="stretched-link text-decoration-none" type="submit" style="color: #282828">
+                    <h4 class="card-text">{{ an }}</h4>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+  </div>
+
+</div>
+
 {% endblock %}
