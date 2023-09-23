@@ -6,7 +6,9 @@
 
 {% block body %}
 
-    {% include 'components/navbar.html' %}
+{% with pageName="Search" %}
+{% include 'components/navbar.html' %}
+{% endwith %}
 
     <h2 style='margin-top: 2pc; margin-left: 20%; margin-bottom: 1pc'>HN search</h2>
 
