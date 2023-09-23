@@ -54,32 +54,3 @@
     visibility: hidden;
     opacity: 0;
 }
-
-.form_frame{
-    background-color: rgb(203, 203, 203) ;
-    border-radius: 10px;
-    margin-top: 30pt; 
-    margin-left: 30pt;
-    margin-right: 30pt;
-    padding-top: 15pt;
-    padding-bottom: 15pt;
-}
-
-.form_row{
-    font-size: 10%; 
-    margin: 10%;
-
-}
-
-input[type="select"],
-input[type="date"],
-input[type="time"],
-input[type="text"],
-input[type="email"] {
-    width: 40%; /* Make the inputs full-width */
-    padding: 8px;
-    background-color: rgb(255, 255, 255) ;
-    border-color: #ffffff00;
-    border-radius: 10px;
-    border: 3px solid #ccc;
-}

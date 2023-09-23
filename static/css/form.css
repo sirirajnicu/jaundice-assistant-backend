@@ -1,0 +1,39 @@
+.form_frame{
+    background-color: rgb(203, 203, 203) ;
+    border-radius: 10px;
+    margin-top: 30pt; 
+    margin-left: 30pt;
+    margin-right: 30pt;
+    padding-top: 15pt;
+    padding-bottom: 15pt;
+}
+
+.form_row{
+    font-size: 10%; 
+    margin: 10%;
+
+}
+
+select,
+input[type="date"],
+input[type="time"],
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 40%; /* Make the inputs full-width */
+    padding: 8px;
+    background-color: rgb(255, 255, 255) ;
+    border-radius: 10px;
+    border: 2px solid #d8d8d8;
+}
+
+select:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+input[type="text"]:focus,
+input[type="choice"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+    border-color: #949494; /* Change border color when focused */
+    outline: none; /* Remove the default focus outline (if desired) */
+}
