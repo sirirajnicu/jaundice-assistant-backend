@@ -1,16 +1,15 @@
 {% extends 'components/default.html' %}
 
 {% block head %}
-<title>Login</title>
+    <title>Login</title>
 {% endblock %}
 
 {% block body %}
-
-<form action="" method="post">
-    {% csrf_token %}
-    {{ LoginForm.username }}
-    {{ LoginForm.password }}
-    {{ LoginForm.role }}
-    <button type="submit">Login</button>
-</form>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ LoginForm.username }}
+        {{ LoginForm.password }}
+        {{ LoginForm.role }}
+        <button type="submit">Login</button>
+    </form>
 {% endblock %}
