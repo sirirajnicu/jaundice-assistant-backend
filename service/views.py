@@ -1,7 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate
-from django.contrib.auth import login as authlogin
-from django.contrib.auth import logout as authlogout
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
@@ -17,7 +16,9 @@ class RequestMethod(enumerate):
 
 
 # Create your views here.
-def login(request: HttpRequest) -> HttpResponse:
+def loginUser(request: HttpRequest) -> HttpResponse:
+    if request.user.is_authenticated:
+        logout(request)
     data = {
         "LoginForm": LoginForm(auto_id=False),
     }
@@ -30,20 +31,17 @@ def login(request: HttpRequest) -> HttpResponse:
             user = authenticate(request, username=username, password=password)
             print(user, password, role)
             if user is not None:
-                authlogin(request, user)
+                login(request, user)
                 request.session["role"] = role
-                return redirect("service:HNsearch")
+                request.session.get_expire_at_browser_close()
+                return redirect("service:HNsearch", permanent=False)
+            else:
+                messages.error(
+                    request, "Invalid username or password.", extra_tags="error"
+                )
         else:
             messages.error(request, "Invalid username or password.", extra_tags="error")
-    else:
-        messages.error(request, " ", extra_tags="error")
     return render(request, "views/index.html", context=data)
-
-
-@login_required
-def logout(request: HttpRequest) -> HttpResponse:
-    authlogout(request)
-    return redirect("/")
 
 
 @login_required
@@ -63,7 +61,13 @@ def HNsearch(request: HttpRequest) -> HttpResponse:
         else:
             messages.error(request, "Invalid search term.", extra_tags="error")
         return render(request, "views/HNsearch.html", context=data)
-
-    else:
-        messages.error(request, " ", extra_tags="error")
     return render(request, "views/HNsearch.html", context=data)
+
+
+def ANsearch(request: HttpRequest) -> HttpResponse:
+    data: dict = {
+        "pageName": "ANsearch",
+    }
+    if request.method != RequestMethod.POST:
+        return redirect("service:HNsearch")
+    return render(request, "views/ANsearch.html", context=data)

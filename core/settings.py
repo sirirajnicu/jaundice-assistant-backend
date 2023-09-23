@@ -10,9 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-from pathlib import Path
-import yaml
 import os
+from pathlib import Path
+
+import yaml
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -136,8 +137,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-LOGIN_URL = "service:login"
-LOGOUT_URL = "service:logout"
+LOGIN_URL = "service:loginUser"
+LOGOUT_URL = "service:loginUser"
 
 
 if DEBUG:
