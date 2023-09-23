@@ -1,0 +1,59 @@
+{% extends 'components/default.html' %}
+{% block title%}Form{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+
+{% with pageName="Form" %}
+{% include 'components/navbar.html' %}
+{% endwith %}
+<div class="form_frame">
+
+
+    <form method="post" style="position: relative;">
+        <h2 style='margin-top: 3%; margin-left: 4%; margin-bottom: 1pc;font-size: 100%;'>Baby Information</h2>
+
+        <button class="btn-logout" type="submit" style='position: absolute; top: 0; right: 60pt; background-color: #FF4754; color: #FFFFFF;'>Cancel</button>
+        <button class="btn-logout" type="submit" style='position: absolute; top: 0; right: 10pt;  background-color: #68A357; color: #FFFFFF;'>Save</button>
+        
+        <div class="form_row">
+            {% csrf_token %}
+            First name
+            {{BabyInfoForm.firstname}}
+            Last name
+            {{BabyInfoForm.lastname}}
+        </div>
+        <div class="form_row">
+            Birth Date
+            {{BabyInfoForm.bd}}
+            Birth Time
+            {{BabyInfoForm.time}}
+            Birth Weight (g)
+            {{BabyInfoForm.bw}}
+        </div>
+        <div class="form_row">
+HN
+            {{BabyInfoForm.HN}}
+            GN
+            {{BabyInfoForm.GN}}
+            AN
+            {{BabyInfoForm.AN}}
+            Admission type
+            {{BabyInfoForm.AT}}
+        </div>
+            
+            
+            
+            
+        
+
+
+        <!-- <input type="submit" value="Save" /> -->
+    </form>
+
+    {{time}}
+</div>>
+
+{% endblock %}

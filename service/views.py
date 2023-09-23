@@ -1,3 +1,6 @@
+from django.http import HttpRequest, HttpResponse
+from django.shortcuts import render, redirect
+from service.forms import LoginForm, SearchForm, BabyInfoForm
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth import login, logout
@@ -73,7 +76,7 @@ def HNsearch(request: HttpRequest) -> HttpResponse:
         return render(request, "views/HNsearch.html", context=data)
     return render(request, "views/HNsearch.html", context=data)
 
-
+@login_required
 def ANsearch(request: HttpRequest) -> HttpResponse:
     if request.method == RequestMethod.POST:
         ANid = request.POST.get("an", default=None)
@@ -88,3 +91,23 @@ def ANsearch(request: HttpRequest) -> HttpResponse:
         return render(request, "views/ANsearch.html", context=data)
     else:
         return redirect("service:HNsearch")
+
+@login_required
+def form(request: HttpRequest) -> HttpResponse:
+    data = {
+        "BabyInfoForm": BabyInfoForm(auto_id=False),
+        "BabyInfo": {"A1":{"firstname":"one", "lastname":"eee","bd":"29/1/2002", "time": "06.00", "bw": "300" , "HN":"A1", "GA": "100", "AN": "111", "admission": "readmit"},
+                     "A2":{"firstname":"two", "lastname":"ooo","bd":"1/8/2009", "time": "19.00", "bw": "290" , "HN":"A2", "GA": "120", "AN": "222", "admission": "birth"}},
+    }
+    if request.method == RequestMethod.POST:
+        form = BabyInfoForm(data=request.POST)
+        if form.is_valid():
+            messages.error(request, "Invalid search term.", extra_tags="error")
+        else:
+            messages.error(request, "Invalid search term.", extra_tags="error")
+        return render(request, "views/form.html", context=data)
+
+    else:
+        messages.error(request, " ", extra_tags="error")
+    return render(request, "views/form.html", context=data)
+
