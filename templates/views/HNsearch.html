@@ -28,6 +28,11 @@
                         <a class="stretched-link text-decoration-none" type="submit" style="color: #282828">
                             <h4 class="card-text">{{ an }}</h4>
                         </a>
+                        <form action="{% url 'service:ANsearch' %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="an" value="{{ an }}">
+                            <button type="submit">edit</button>
+                        </form>
                     </div>
                 {% endfor %}
             </div>

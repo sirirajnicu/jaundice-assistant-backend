@@ -8,4 +8,5 @@ urlpatterns = [
     path("", views.loginUser, name="loginUser"),
     path("login/", views.loginUser, name="loginUser"),
     path("HNsearch/", views.HNsearch, name="HNsearch"),
+    path("ANsearch/", views.ANsearch, name="ANsearch"),
 ]

@@ -17,8 +17,11 @@ class RequestMethod(enumerate):
 
 # Create your views here.
 def loginUser(request: HttpRequest) -> HttpResponse:
+    """
+    This view is the index, login, and logout. It will logout user if they already login or serve login page for user.
+    """
     if request.user.is_authenticated:
-        logout(request)
+        logout(request)  # ? Somehow we need this place for logout
     data = {
         "LoginForm": LoginForm(auto_id=False),
     }
@@ -44,9 +47,15 @@ def loginUser(request: HttpRequest) -> HttpResponse:
     return render(request, "views/index.html", context=data)
 
 
+# def logoutUser(request: HttpRequest) -> HttpResponse:
+#     #! This code should work but it not
+#     logout(request)
+#     return redirect("service:loginUser")
+
+
 @login_required
 def HNsearch(request: HttpRequest) -> HttpResponse:
-    MockANmap = {"1": [1.1, 1.2, 1.3], "2": [2.1, 2.2], "3": []}
+    MockANmap = {"1": [1.1, 1.2, 1.3], "2": [2.1, 2.2], "3": []}  #! testing info
     data = {
         "SearchForm": SearchForm(auto_id=False),
         "pageName": "Create/Search",
@@ -55,6 +64,7 @@ def HNsearch(request: HttpRequest) -> HttpResponse:
         form = SearchForm(data=request.POST)
         if form.is_valid():
             searchid = form.cleaned_data["searchid"]
+            # TODO implement real thing
             data["HN"] = searchid
             data["ANlist"] = MockANmap[data["HN"]]
             messages.error(request, "Invalid search term.", extra_tags="error")
@@ -65,9 +75,16 @@ def HNsearch(request: HttpRequest) -> HttpResponse:
 
 
 def ANsearch(request: HttpRequest) -> HttpResponse:
-    data: dict = {
-        "pageName": "ANsearch",
-    }
-    if request.method != RequestMethod.POST:
+    if request.method == RequestMethod.POST:
+        ANid = request.POST.get("an", default=None)
+        if ANid is None:
+            messages.error(request, "Invalid search term.", extra_tags="error")
+            return redirect("service:HNsearch")
+        # TODO implement real thing
+        data: dict = {
+            "pageName": "ANsearch",
+            "ANid": ANid,
+        }
+        return render(request, "views/ANsearch.html", context=data)
+    else:
         return redirect("service:HNsearch")
-    return render(request, "views/ANsearch.html", context=data)
