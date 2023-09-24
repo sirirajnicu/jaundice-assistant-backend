@@ -17,26 +17,35 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
-select,
-input[type="text"],
-input[type="password"] {
+.space select,
+.space input[type="text"],
+.space input[type="password"] {
     width: 100%; 
-    padding: 10px;
-    width: 100%;
+    padding: 13px;
+    font-size: 17px;
     background-color: rgb(255, 255, 255) ;
     border-radius: 52px;
-    border: 1px solid #000000;
+    border:0;
+    box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.3); 
+}
+
+.space select:focus,
+.space input[type="text"]:focus,
+.space input[type="password"]:focus {
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.3); 
+  border:0;
 }
 
 .space {
   margin-bottom: 20px; 
 }
 
-label {
+.space label {
   display: block;
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 500;
   padding-left: 15px;
+  padding-bottom: 7px;
 }
 
 .button-space {
@@ -54,6 +63,6 @@ label {
   border: none;
   border-radius: 52px;
   font-weight: 600;
-  font-size: 4.5vh;
+  font-size: 4vh;
   }
   
