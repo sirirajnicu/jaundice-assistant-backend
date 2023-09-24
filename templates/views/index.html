@@ -1,20 +1,42 @@
 {% extends 'components/default.html' %}
 
 {% block head %}
-    <title>Login</title>
+<title>Login</title>
+
 {% endblock %}
 
 {% block body %}
-    <form action="" method="post">
+<p style="color: #ABABAB; 
+        font-weight: 700;
+        font-size: 20px;
+        padding-right: 9cm"
+        class="space"> Jaundice Program </p>
+
+<div class="formContainer">
+    <p style="color: #60C09E;
+        font-size: 40px;
+        font-weight: 700;
+        text-align: center;">Sign in
+    </p>
+
+    <form method="post" class="space">
         {% csrf_token %}
-        {{ LoginForm.username }}
-        {{ LoginForm.password }}
-        {{ LoginForm.role }}
-        {% for msg in messages %}
-            {% if "error" in msg.tags %}
-                <p style="color: red">{{ msg }}</p>
-            {% endif %}
-        {% endfor %}
-        <button type="submit">Login</button>
+        <div class="space">
+            <label>username</label>
+            {{ LoginForm.username }}
+        </div>
+        <div class="space">
+            <label>password</label>
+            {{ LoginForm.password }}
+        </div>
+        <div>
+            <label>role</label>
+            {{ LoginForm.role }}
+        </div>
+        <div class="button-space">
+            <button class="login-btn" type"submit">Login</button>
+        </div>
+
     </form>
+</div>
 {% endblock %}
