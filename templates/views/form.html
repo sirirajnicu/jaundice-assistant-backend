@@ -9,77 +9,7 @@
 {% with pageName="Form" %}
 {% include 'components/navbar.html' %}
 {% endwith %}
-<div class="form_frame">
 
-
-    <form method="post" style="position: relative;">
-        <h2 style='margin-top: 3%; margin-left: 4%; margin-bottom: 1pc;font-size: 100%;'>Baby Information</h2>
-
-        <button class="btn-logout" type="submit" style='position: absolute; top: 0; right: 60pt; background-color: #FF4754; color: #FFFFFF;'>Cancel</button>
-        <button class="btn-logout" type="submit" style='position: absolute; top: 0; right: 10pt;  background-color: #68A357; color: #FFFFFF;'>Save</button>
-        
-        <div class="form_row">
-            <div class="form_group">
-                <label for="id_firstname">First name:</label>
-                {{ BabyInfoForm.firstname }}
-            </div>
-            <div class="form_group">
-                <label for="id_lastname">Last name:</label>
-                {{ BabyInfoForm.lastname }}
-            </div>
-        </div>
-        
-        <div class="form_row">
-            <div class="form_group">
-                <label for="id_bd">Birth Date:</label>
-                {{ BabyInfoForm.bd }}
-            </div>
-            <div class="form_group">
-                <label for="id_time">Birth Time:</label>
-                {{ BabyInfoForm.time }}
-            </div>
-        </div>
-        
-        <div class="form_row">
-            <div class="form_group">
-                <label for="id_bw">Birth Weight (g):</label>
-                {{ BabyInfoForm.bw }}
-            </div>
-            <div class="form_group">
-                <label for="id_HN">HN:</label>
-                {{ BabyInfoForm.HN }}
-            </div>
-        </div>
-        
-        <div class="form_row">
-            <div class="form_group">
-                <label for="id_GA">GA:</label>
-                {{ BabyInfoForm.GA }}
-            </div>
-            <div class="form_group">
-                <label for="id_AN">AN:</label>
-                {{ BabyInfoForm.AN }}
-            </div>
-        </div>
-        
-        <div class="form_row">
-            <div class="form_group">
-                <label for="id_AT">Admission Type:</label>
-                {{ BabyInfoForm.AT }}
-            </div>
-        </div>
-        
-            
-            
-            
-            
-        
-
-
-        <!-- <input type="submit" value="Save" /> -->
-    </form>
-
-    {{time}}
-</div>>
+{% include 'components/babyInfoEdit.html' %}
 
 {% endblock %}
