@@ -68,8 +68,9 @@ def HNsearch(request: HttpRequest) -> HttpResponse:
         if form.is_valid():
             searchid = form.cleaned_data["searchid"]
             # TODO implement real thing
-            data["HN"] = searchid
-            data["ANlist"] = MockANmap[data["HN"]]
+            if searchid in MockANmap:
+                data["HN"] = searchid
+                data["ANlist"] = MockANmap[data["HN"]]
             messages.error(request, "Invalid search term.", extra_tags="error")
         else:
             messages.error(request, "Invalid search term.", extra_tags="error")

@@ -6,24 +6,37 @@
 
 {% block body %}
 
-{% with pageName="Search" %}
+{% with pageName="HN Search" %}
 {% include 'components/navbar.html' %}
 {% endwith %}
 
-    <h2 style='margin-top: 2pc; margin-left: 20%; margin-bottom: 1pc'>HN search</h2>
-
-    <div style="text-align: center" >
-        <form method="post", style=" padding-left: 15%;padding-right: 15%">
+    <div class="search_bar">
+        <form method="post", style="display: flex">
             {% csrf_token %}
             {{ SearchForm.searchid }}
-            <div style="padding-top: 10px;">
-                <button class="btn-logout" type="submit" style='background-color: #FF881C; color: #FFFFFF;'>Search</button>
-            </div>
+            <button class="btn-logout search_button" type="submit" >
+                <!-- <i class="fa fa-search" style="size: 10%;" ></i>search -->
+                <i class="fa fa-search" style="size: 10%;" ></i>
+            </button>
         </form>
+    </div>
 
-        <h4 style='margin-top: 1pc; margin-left: 20%; margin-bottom: 1pc; text-align: left'>existing AN
-            for {{ HN }}</h4>
+    <div style='color: #b8b8b8;text-align: end;padding: 10px;'>
+        {% if ANlist is None %}
+        {% else %}
+            <p>HN: {{ HN }}</p>
+        {% endif %}
 
+    </div>
+
+    <div style="text-align: center" >
+        {% if ANlist is None %}
+        <p style='color: #b8b8b8'> HN not found</p>
+        {% elif ANlist %}
+        {% else %}
+        <p style='color: #b8b8b8'> Zero Admission Numbers</p>
+        {% endif %}
+    
 
         <div class="overflow-scroll">
             <div>
@@ -36,6 +49,8 @@
                 {% endfor %}
             </div>
         </div>
+
+    
 
     </div>
 

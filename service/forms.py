@@ -33,7 +33,7 @@ class SearchForm(forms.Form):
     searchid = forms.CharField(
         required=True,
         widget=forms.TextInput(
-            {"name": "searchid", "class": "form-control", "placeholder": "search"}
+            {"name": "searchid", "class": "form-control", "placeholder": "Hospital Number"}
         ),
     )
 
