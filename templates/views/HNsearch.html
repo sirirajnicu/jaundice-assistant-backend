@@ -26,18 +26,13 @@
 
 
         <div class="overflow-scroll">
-            <div style="width: 50%;">
+            <div>
                 {% for an in ANlist %}
-                    <div class="card" style="background-color: #F2F2F2; margin: 1pc; padding: 1pc;">
-                        <a class="stretched-link text-decoration-none" type="submit" style="color: #282828">
-                            <h4 class="card-text">{{ an }}</h4>
-                        </a>
-                        <form action="{% url 'service:ANsearch' %}" method="post">
-                            {% csrf_token %}
-                            <input type="hidden" name="an" value="{{ an }}">
-                            <button type="submit">edit</button>
-                        </form>
+                <a href="{% url 'service:form' an %}" , style="text-decoration: none;">
+                    <div class="card AN-card" >
+                        <h4 class="card-text">{{ an }}</h4>
                     </div>
+                </a>
                 {% endfor %}
             </div>
         </div>

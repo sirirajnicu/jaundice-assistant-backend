@@ -54,3 +54,26 @@
     visibility: hidden;
     opacity: 0;
 }
+
+.AN-card {
+    background-color: #ffffff;
+    margin: 1pc;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 9px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.AN-card h4 {
+    text-align: center;
+    color: #000000;
+}
+.AN-card:hover {
+    transform: scale(1.2); 
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    transition: 0.3s ease
+}
+
