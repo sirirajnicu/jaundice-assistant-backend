@@ -1,4 +1,4 @@
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from service.forms import LoginForm, SearchForm, BabyInfoForm
 from django.contrib import messages
@@ -93,14 +93,17 @@ def ANsearch(request: HttpRequest) -> HttpResponse:
         return redirect("service:HNsearch")
 
 @login_required
-def form(request: HttpRequest) -> HttpResponse:
+def form(request: HttpRequest, AN) -> HttpResponse:
+    BabyInfo = {"1.1":{"firstname":"one", "lastname":"eee","bd":"2011-01-11", "time": "06:00", "bw": "300" , "HN":"1", "GA": "100", "AN": "1.1", "AT": "readmit"},
+                     "2.1":{"firstname":"two", "lastname":"ooo","bd":"2022-02-22", "time": "19:00", "bw": "290" , "HN":"2", "GA": "120", "AN": "2.1", "AT": "birth"}}
     data = {
         "BabyInfoForm": BabyInfoForm(auto_id=False),
-        "BabyInfo": {"A1":{"firstname":"one", "lastname":"eee","bd":"29/1/2002", "time": "06.00", "bw": "300" , "HN":"A1", "GA": "100", "AN": "111", "admission": "readmit"},
-                     "A2":{"firstname":"two", "lastname":"ooo","bd":"1/8/2009", "time": "19.00", "bw": "290" , "HN":"A2", "GA": "120", "AN": "222", "admission": "birth"}},
     }
+    # get from database
+    info = BabyInfo.get(AN, {})
+    form = BabyInfoForm(request.POST or None, initial = info  )
+
     if request.method == RequestMethod.POST:
-        form = BabyInfoForm(data=request.POST)
         if form.is_valid():
             messages.error(request, "Invalid search term.", extra_tags="error")
         else:
@@ -109,5 +112,4 @@ def form(request: HttpRequest) -> HttpResponse:
 
     else:
         messages.error(request, " ", extra_tags="error")
-    return render(request, "views/form.html", context=data)
-
+    return render(request, "views/form.html", context={"BabyInfoForm": form})

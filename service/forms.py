@@ -79,10 +79,11 @@ class BabyInfoForm(forms.Form):
         ),
     )
     AT = forms.ChoiceField (
-        choices= (("birth","birth"),("readmid","readmid")),
+        choices= ((" ","-"),("birth","birth"),("readmit","readmit")),
         widget=forms.Select(
-            {"class": "form-control", "placeholder": "Admission type"}
+            {"name": "AT","class": "form-control", "placeholder": "Admission type"}
         ),
+        initial=" ",required=True,
     )
 
 
