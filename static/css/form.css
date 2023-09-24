@@ -1,18 +1,31 @@
 .form_frame{
-    background-color: rgb(203, 203, 203) ;
+    background-color: EFEFEF ;
     border-radius: 10px;
-    margin-top: 30pt; 
-    margin-left: 30pt;
-    margin-right: 30pt;
+    margin-top: 20pt; 
+    margin-left: 20pt;
+    margin-right: 20pt;
     padding-top: 15pt;
     padding-bottom: 15pt;
+
 }
 
 .form_row{
-    font-size: 10%; 
-    margin: 10%;
-
+    font-size: 12px; 
+    margin: 2%;
+    display: flex;
 }
+
+.form_group {
+    margin: 4px; 
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form_group label {
+    font-weight: bold;
+    margin-bottom: 5px; 
+}
+
 
 select,
 input[type="date"],
@@ -20,10 +33,11 @@ input[type="time"],
 input[type="text"],
 input[type="password"],
 input[type="email"] {
-    width: 40%; /* Make the inputs full-width */
+    font-size: 110%;
     padding: 8px;
+    width: 100%;
     background-color: rgb(255, 255, 255) ;
-    border-radius: 10px;
+    border-radius: 11px;
     border: 2px solid #d8d8d8;
 }
 

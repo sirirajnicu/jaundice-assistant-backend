@@ -12,11 +12,13 @@
 
     <h2 style='margin-top: 2pc; margin-left: 20%; margin-bottom: 1pc'>HN search</h2>
 
-    <div style="text-align: center">
-        <form method="post">
+    <div style="text-align: center" >
+        <form method="post", style=" padding-left: 15%;padding-right: 15%">
             {% csrf_token %}
             {{ SearchForm.searchid }}
-            <button class="btn-logout" type="submit" style='background-color: #FF881C; color: #FFFFFF'>Search</button>
+            <div style="padding-top: 10px;">
+                <button class="btn-logout" type="submit" style='background-color: #FF881C; color: #FFFFFF;'>Search</button>
+            </div>
         </form>
 
         <h4 style='margin-top: 1pc; margin-left: 20%; margin-bottom: 1pc; text-align: left'>existing AN

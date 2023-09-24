@@ -19,30 +19,56 @@
         <button class="btn-logout" type="submit" style='position: absolute; top: 0; right: 10pt;  background-color: #68A357; color: #FFFFFF;'>Save</button>
         
         <div class="form_row">
-            {% csrf_token %}
-            First name
-            {{BabyInfoForm.firstname}}
-            Last name
-            {{BabyInfoForm.lastname}}
+            <div class="form_group">
+                <label for="id_firstname">First name:</label>
+                {{ BabyInfoForm.firstname }}
+            </div>
+            <div class="form_group">
+                <label for="id_lastname">Last name:</label>
+                {{ BabyInfoForm.lastname }}
+            </div>
         </div>
+        
         <div class="form_row">
-            Birth Date
-            {{BabyInfoForm.bd}}
-            Birth Time
-            {{BabyInfoForm.time}}
-            Birth Weight (g)
-            {{BabyInfoForm.bw}}
+            <div class="form_group">
+                <label for="id_bd">Birth Date:</label>
+                {{ BabyInfoForm.bd }}
+            </div>
+            <div class="form_group">
+                <label for="id_time">Birth Time:</label>
+                {{ BabyInfoForm.time }}
+            </div>
         </div>
+        
         <div class="form_row">
-HN
-            {{BabyInfoForm.HN}}
-            GN
-            {{BabyInfoForm.GN}}
-            AN
-            {{BabyInfoForm.AN}}
-            Admission type
-            {{BabyInfoForm.AT}}
+            <div class="form_group">
+                <label for="id_bw">Birth Weight (g):</label>
+                {{ BabyInfoForm.bw }}
+            </div>
+            <div class="form_group">
+                <label for="id_HN">HN:</label>
+                {{ BabyInfoForm.HN }}
+            </div>
         </div>
+        
+        <div class="form_row">
+            <div class="form_group">
+                <label for="id_GA">GA:</label>
+                {{ BabyInfoForm.GA }}
+            </div>
+            <div class="form_group">
+                <label for="id_AN">AN:</label>
+                {{ BabyInfoForm.AN }}
+            </div>
+        </div>
+        
+        <div class="form_row">
+            <div class="form_group">
+                <label for="id_AT">Admission Type:</label>
+                {{ BabyInfoForm.AT }}
+            </div>
+        </div>
+        
             
             
             
