@@ -58,7 +58,7 @@ def loginUser(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def HNsearch(request: HttpRequest) -> HttpResponse:
-    MockANmap = {"1": [1.1, 1.2, 1.3], "2": [2.1, 2.2], "3": []}  #! testing info
+    MockANmap = {"1": [1.1, 1.2, 1.3,1,1,11,1,1,1,11,1,1,1,1,1,1,11,11,1,11,1,1,1,1,1,1,11,1,1,1,1], "2": [2.1, 2.2], "3": []}  #! testing info
     data = {
         "SearchForm": SearchForm(auto_id=False),
         "pageName": "Create/Search",
@@ -95,8 +95,6 @@ def ANsearch(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def form(request: HttpRequest, AN) -> HttpResponse:
-    BabyInfo = {"1.1":{"firstname":"one", "lastname":"eee","bd":"2011-01-11", "time": "06:00", "bw": "300" , "HN":"1", "GA": "100", "AN": "1.1", "AT": "readmit"},
-                     "2.1":{"firstname":"two", "lastname":"ooo","bd":"2022-02-22", "time": "19:00", "bw": "290" , "HN":"2", "GA": "120", "AN": "2.1", "AT": "birth"}}
     data = {
         "BabyInfoForm": BabyInfoForm(auto_id=False),
     }
