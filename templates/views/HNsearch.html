@@ -19,12 +19,11 @@
             </button>
         </form>
         {% if ANlist is None %}
-        <p style='color: #b8b8b8;padding: 1pc;'> HN not found</p>
+        <p style='color: #b8b8b8;padding: 7px;'> HN not found</p>
         {% elif ANlist %}
-        <p style='color: #525252; padding: 1.5pc; font-weight: 500; font-size: 18px; text-align: left;'> HN: {{ HN }}</p>
+        <p style='color: #525252; padding: 7px; font-weight: 500; font-size: 18px; text-align: left;'> HN: {{ HN }}</p>
         {% else %}
-        <p style='color: #525252; padding: 1.5pc; font-weight: 500; font-size: 18px; text-align: left;'> HN: {{ HN }}</p>
-        <p style='color: #b8b8b8;padding: 1pc;font-weight: 100;'> Zero Admission Numbers</p>
+        <p style='color: #525252; padding: 7px; font-weight: 500; font-size: 18px; text-align: left;'> HN: {{ HN }}</p>
         {% endif %}
     </div>
 
@@ -39,6 +38,12 @@
 
         <div>
             <div>
+                {% if ANlist is None %}
+                {% elif ANlist %}
+                {% else %}
+                <p style='color: #b8b8b8;padding: 1pc;font-weight: 100;'> Zero Admission Numbers</p>
+                {% endif %}
+
                 {% for an in ANlist %}
                 <a href="{% url 'service:form' an %}" , style="text-decoration: none;">
                     <div class="{% cycle 'AN-card-odd' 'AN-card-even' %}">
