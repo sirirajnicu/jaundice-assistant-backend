@@ -11,14 +11,21 @@
 {% endwith %}
 <div style="background-color: #eeeeee;flex-direction: column; display: flex;min-height: 100vh;margin: 0;font-weight:500;">
     <div class="search_bar">
-        <form method="post", style="display: flex">
+        <form method="post">
             {% csrf_token %}
             {{ SearchForm.searchid }}
-            <button class="search_button" type="submit" >
-                <!-- <i class="fa fa-search" style="size: 10%;" ></i>search -->
+            <button class="search_button"  type="submit" >
                 <i class="fa fa-search" style="size: 10%;" ></i>
             </button>
         </form>
+        {% if ANlist is None %}
+        <p style='color: #b8b8b8;padding: 1pc;'> HN not found</p>
+        {% elif ANlist %}
+        <p style='color: #525252; padding: 1.5pc; font-weight: 500; font-size: 18px; text-align: left;'> HN: {{ HN }}</p>
+        {% else %}
+        <p style='color: #525252; padding: 1.5pc; font-weight: 500; font-size: 18px; text-align: left;'> HN: {{ HN }}</p>
+        <p style='color: #b8b8b8;padding: 1pc;font-weight: 100;'> Zero Admission Numbers</p>
+        {% endif %}
     </div>
 
     <!-- <div style='color: #7f7f7f;text-align: left;padding: 20px 0 10px 8%;'>
@@ -28,16 +35,6 @@
             <p>HN: {{ HN }}</p>
         {% endif %}
     </div> -->
-
-    <div class="AN-frame" style="margin-top: 2pc;">
-        {% if ANlist is None %}
-        <p style='color: #b8b8b8;padding: 1pc;'> HN not found</p>
-        {% elif ANlist %}
-        <p style='color: #525252; padding: 1.5pc; font-weight: 500; font-size: 18px; text-align: left;'> HN: {{ HN }}</p>
-        {% else %}
-        <p style='color: #525252; padding: 1.5pc; font-weight: 500; font-size: 18px; text-align: left;'> HN: {{ HN }}</p>
-        <p style='color: #b8b8b8;padding: 1pc;font-weight: 100;'> Zero Admission Numbers</p>
-        {% endif %}
     
 
         <div>
@@ -51,7 +48,5 @@
                 {% endfor %}
             </div>
         </div>
-
-    </div>
 </div>
 {% endblock %}

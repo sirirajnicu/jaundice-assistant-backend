@@ -100,6 +100,7 @@
 
 /* Search Bar  */
 .search_bar {
+    display: flex;
     background-color: #FFFFFF;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
     padding: 1pc;
@@ -108,7 +109,7 @@
 .search_bar input[type="text"] {
     font-size: 80%;
     padding: 11px;
-    width: 30%;
+    width: 70%;
     height: 2.4pc;
     background-color: rgb(255, 255, 255) ;
     border:0;
@@ -118,7 +119,6 @@
 
 .search_bar input[type="text"]:focus{
     box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.3); 
-
 }
 
 .search_button {
