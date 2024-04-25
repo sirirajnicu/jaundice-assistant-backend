@@ -5,13 +5,31 @@ from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
-from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render, redirect
 
-from service.forms import LoginForm, SearchForm
-
-BabyInfo = {"1.1":{"firstname":"one", "lastname":"eee","bd":"2011-01-11", "time": "06:00", "bw": "300" , "HN":"1", "GA": "100", "AN": "1.1", "AT": "readmit"},
-                     "2.1":{"firstname":"two", "lastname":"ooo","bd":"2022-02-22", "time": "19:00", "bw": "290" , "HN":"2", "GA": "120", "AN": "2.1", "AT": "birth"}}
+BabyInfo = {
+    "1.1": {
+        "firstname": "one",
+        "lastname": "eee",
+        "bd": "2011-01-11",
+        "time": "06:00",
+        "bw": "300",
+        "HN": "1",
+        "GA": "100",
+        "AN": "1.1",
+        "AT": "readmit",
+    },
+    "2.1": {
+        "firstname": "two",
+        "lastname": "ooo",
+        "bd": "2022-02-22",
+        "time": "19:00",
+        "bw": "290",
+        "HN": "2",
+        "GA": "120",
+        "AN": "2.1",
+        "AT": "birth",
+    },
+}
 
 
 class RequestMethod(enumerate):
@@ -61,7 +79,43 @@ def loginUser(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def HNsearch(request: HttpRequest) -> HttpResponse:
-    MockANmap = {"1": [1.1, 1.2, 1.3,1,1,11,1,1,1,11,1,1,1,1,1,1,11,11,1,11,1,1,1,1,1,1,11,1,1,1,1], "2": [2.1, 2.2], "3": []}  #! testing info
+    MockANmap = {
+        "1": [
+            1.1,
+            1.2,
+            1.3,
+            1,
+            1,
+            11,
+            1,
+            1,
+            1,
+            11,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            11,
+            11,
+            1,
+            11,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            11,
+            1,
+            1,
+            1,
+            1,
+        ],
+        "2": [2.1, 2.2],
+        "3": [],
+    }  #! testing info
     data = {
         "SearchForm": SearchForm(auto_id=False),
         "pageName": "Create/Search",
@@ -80,6 +134,7 @@ def HNsearch(request: HttpRequest) -> HttpResponse:
         return render(request, "views/HNsearch.html", context=data)
     return render(request, "views/HNsearch.html", context=data)
 
+
 @login_required
 def ANsearch(request: HttpRequest) -> HttpResponse:
     if request.method == RequestMethod.POST:
@@ -95,7 +150,7 @@ def ANsearch(request: HttpRequest) -> HttpResponse:
         return render(request, "views/ANsearch.html", context=data)
     else:
         return redirect("service:HNsearch")
-    
+
 
 @login_required
 def form(request: HttpRequest, AN) -> HttpResponse:
@@ -104,7 +159,7 @@ def form(request: HttpRequest, AN) -> HttpResponse:
     }
     # get from database
     info = BabyInfo.get(AN, {})
-    form = BabyInfoForm(request.POST or None, initial = info  )
+    form = BabyInfoForm(request.POST or None, initial=info)
 
     if request.method == RequestMethod.POST:
         if form.is_valid():
@@ -117,18 +172,19 @@ def form(request: HttpRequest, AN) -> HttpResponse:
         messages.error(request, " ", extra_tags="error")
     return render(request, "views/form.html", context={"BabyInfoForm": form})
 
+
 @login_required
 def babyInfoForm(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = BabyInfoForm(request.POST)
         if form.is_valid():
             # Replace the following line with the appropriate database logic.
             # For example: baby_info = form.save()
-            messages.success(request, 'Baby information saved successfully.')
-            return redirect('service:form')
+            messages.success(request, "Baby information saved successfully.")
+            return redirect("service:form")
         else:
-            messages.error(request, 'Invalid form data. Please correct the errors.')
+            messages.error(request, "Invalid form data. Please correct the errors.")
     else:
         form = BabyInfoForm()
-    
-    return render(request, 'babyInfoForm.html', {'form': form})
+
+    return render(request, "babyInfoForm.html", {"form": form})

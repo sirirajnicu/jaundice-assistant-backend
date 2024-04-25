@@ -113,9 +113,11 @@ class Patient:
 
     def change_rate_first_day(self) -> float or None:
         first_day_values = self._first_24hrs_tcb()
-        if first_day_values is None or \
-                len(first_day_values) < 2 or \
-                first_day_values[-1].data >= 15:
+        if (
+            first_day_values is None
+            or len(first_day_values) < 2
+            or first_day_values[-1].data >= 15
+        ):
             first_day_values = self._first_24hrs_tsb()
 
         if len(first_day_values) < 2:
@@ -125,9 +127,11 @@ class Patient:
 
     def change_rate_after_first_day(self) -> float or None:
         values_to_use = self.tcb_value
-        if values_to_use is None or \
-                len(values_to_use) < 2 or \
-                values_to_use[-1].data >= 15:
+        if (
+            values_to_use is None
+            or len(values_to_use) < 2
+            or values_to_use[-1].data >= 15
+        ):
             values_to_use = self.tsb_value
 
         if len(values_to_use) < 2:
@@ -151,8 +155,9 @@ class Patient:
 
         all_on_photos = list(filter(is_on_photo, self.photo_therapy_record))
 
-        return (not len(all_on_photos) <= 0) and \
-            (datetime.now() - all_on_photos[-1].time < timedelta(hours=96))
+        return (not len(all_on_photos) <= 0) and (
+            datetime.now() - all_on_photos[-1].time < timedelta(hours=96)
+        )
 
     @staticmethod
     def default():

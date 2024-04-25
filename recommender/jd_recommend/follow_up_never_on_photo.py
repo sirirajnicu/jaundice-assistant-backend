@@ -8,8 +8,9 @@ class BilirubinType(Enum):
     TSB = 1
 
 
-def manage_follow_up_never_on_photo(patient: Patient, photo_threshold: float,
-                                    bilirubin_type_to_check: BilirubinType) -> str:
+def manage_follow_up_never_on_photo(
+    patient: Patient, photo_threshold: float, bilirubin_type_to_check: BilirubinType
+) -> str:
     """
     Based on Figure 2: Management in the case that TCB/TSB is below phototherapy threshold during
     birth admission for infants >= 12 hours old who have never been on phototherapy
@@ -39,12 +40,16 @@ def manage_follow_up_never_on_photo(patient: Patient, photo_threshold: float,
             return "Can D/C TCB in 2 days"
         else:
             # TODO: fix this to be automated
-            return "Can D/C based on risk of box 1 and 2: " + \
-                "1 week if any, otherwise 1 month"
+            return (
+                "Can D/C based on risk of box 1 and 2: "
+                + "1 week if any, otherwise 1 month"
+            )
     else:
         if patient.age() < timedelta(hours=72):
             return "Can D/C TCB in 3 days"
         else:
             # TODO: fix this to be automated
-            return "Can D/C based on risk of box 1 and 2: " + \
-                "1 week if any, otherwise 1 month"
+            return (
+                "Can D/C based on risk of box 1 and 2: "
+                + "1 week if any, otherwise 1 month"
+            )

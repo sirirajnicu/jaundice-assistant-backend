@@ -10,7 +10,7 @@ HYPERBILIRUBINEMIA_RISKS: list[str] = [
     "Suboptimal breastfeeding",
     "Scalp hematoma or significant bruising",
     "Down syndrome",
-    "Macrosomic infant of diabetic mother"
+    "Macrosomic infant of diabetic mother",
 ]
 
 NEUROTOXICITY_RISKS: list[str] = [
@@ -19,7 +19,7 @@ NEUROTOXICITY_RISKS: list[str] = [
     "GA < 38 weeks",
     "Albumin < 3g/dL",
     "Sepsis",
-    "Clinically unstable in past 24 hours"
+    "Clinically unstable in past 24 hours",
 ]
 
 PROJECT_ROOT: Path = Path(__file__).parent.parent.parent

@@ -33,9 +33,14 @@ class SearchForm(forms.Form):
     searchid = forms.CharField(
         required=True,
         widget=forms.TextInput(
-            {"name": "searchid", "class": "form-control", "placeholder": "Hospital Number"}
+            {
+                "name": "searchid",
+                "class": "form-control",
+                "placeholder": "Hospital Number",
+            }
         ),
     )
+
 
 class BabyInfoForm(forms.Form):
     firstname = forms.CharField(
@@ -50,17 +55,31 @@ class BabyInfoForm(forms.Form):
     )
     bd = forms.DateField(
         widget=forms.DateInput(
-            {"name": "Birth date", "class": "form-control", "placeholder": "Birth date", "type":"date"}
+            {
+                "name": "Birth date",
+                "class": "form-control",
+                "placeholder": "Birth date",
+                "type": "date",
+            }
         ),
     )
     time = forms.TimeField(
         widget=forms.TimeInput(
-            {"name": "Birth time", "class": "form-control", "placeholder": "Birth time","type":"time"}
+            {
+                "name": "Birth time",
+                "class": "form-control",
+                "placeholder": "Birth time",
+                "type": "time",
+            }
         ),
     )
     bw = forms.CharField(
         widget=forms.TextInput(
-            {"name": "Birth weight", "class": "form-control", "placeholder": "Birth weight"}
+            {
+                "name": "Birth weight",
+                "class": "form-control",
+                "placeholder": "Birth weight",
+            }
         ),
     )
     HN = forms.CharField(
@@ -78,14 +97,11 @@ class BabyInfoForm(forms.Form):
             {"name": "AN", "class": "form-control", "placeholder": "AN"}
         ),
     )
-    AT = forms.ChoiceField (
-        choices= (("","-"),("birth","birth"),("readmit","readmit")),
+    AT = forms.ChoiceField(
+        choices=(("", "-"), ("birth", "birth"), ("readmit", "readmit")),
         widget=forms.Select(
-            {"name": "AT","class": "form-control", "placeholder": "Admission type"}
+            {"name": "AT", "class": "form-control", "placeholder": "Admission type"}
         ),
-        initial="",required=True,
+        initial="",
+        required=True,
     )
-
-
-
-

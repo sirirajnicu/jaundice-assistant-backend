@@ -7,7 +7,7 @@ def handle_far_below_threshold(patient: Patient) -> str or list[str]:
     """
     treatments = [
         "Follow TSB/shielded TCB for 12-24 hours based on age and TCB/TSB trajectory",
-        "PE and work for causes"
+        "PE and work for causes",
     ]
     match patient.on_photo_therapy:
         case PhototherapyType.NONE:
@@ -41,18 +41,22 @@ def handle_close_below_threshold(patient: Patient) -> str or list[str]:
     if request_bind_score() >= 4:
         treatments.append("Do an exchange transfusion")
     else:
-        treatments.extend([
-            "Continue phototherapy",
-            "Consider exchange transfusion if A/B ratio is high",
-            "NPO, peripheral IV",
-            "Cross-matched (1-2 hours of waiting time)",
-            "PE and work up for cause",
-            "Follow up on TSB values every 2 hours until > 2mg/dL below exchange threshold",
-            "Consider IVIG in infants with DAT positive"
-        ])
+        treatments.extend(
+            [
+                "Continue phototherapy",
+                "Consider exchange transfusion if A/B ratio is high",
+                "NPO, peripheral IV",
+                "Cross-matched (1-2 hours of waiting time)",
+                "PE and work up for cause",
+                "Follow up on TSB values every 2 hours until > 2mg/dL below exchange threshold",
+                "Consider IVIG in infants with DAT positive",
+            ]
+        )
 
 
-def manage_tsb_over_threshold(patient: Patient, exchange_threshold: float) -> str or list[str]:
+def manage_tsb_over_threshold(
+    patient: Patient, exchange_threshold: float
+) -> str or list[str]:
     """
     Based on Figure 4: Managements of TSB levels that are exceeding phototherapy threshold
     """
