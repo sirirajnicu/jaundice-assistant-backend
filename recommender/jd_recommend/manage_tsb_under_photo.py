@@ -1,63 +1,69 @@
+from typing import List
+
 from recommender.jd_models import Patient, PhototherapyType, Gender
-from follow_up_after_off_photo import manage_follow_up_after_off_photo
+from recommender.jd_models.treatment import TreatmentType
+from msg_generation import generate_treatment_msgs
 
 
-def tsb_lt_threshold_with_photo(
-    patient: Patient, photo_threshold: float
-) -> str or list[str]:
+
+def handle_tsb_lt_threshold_with_photo(patient: Patient,
+                                       photo_threshold: float) -> List[TreatmentType]:
     """
     Based on Figure 3 - left arm
     """
     tsb_diff = photo_threshold - patient.tsb_value[-1].data
+    treatments: List[TreatmentType] = []
 
     if tsb_diff < 2.0:
-        return [
-            "Continue phototherapy",
-            "Follow TSB/shielded TCB in 12-24 hours based on age,"
-            + "neurotoxic risk, TSB and TCB trajectory",
-        ]
+
+        treatments.extend([
+            TreatmentType.CONT_PHOTO,
+            TreatmentType.TSB_SHIELDED_TCB_BY_RISK,
+        ])
     elif patient.photo_therapy_record[-1].data == PhototherapyType.SINGLE:
-        return "Off photo and follow-up"
+        treatments.append(TreatmentType.OFF_PHOTO_WITH_TIMING)
     else:
-        return [
-            "On single phototherapy and follow TSB/shielded TCB in 12-24"
-            + "hours based on age, neurotoxic risk, TCB and TSB trajectory",
-            "Off photo and follow-up",
-        ]
+        treatments.extend([
+            TreatmentType.TSB_SHIELDED_TCB_BY_RISK,
+            TreatmentType.OFF_PHOTO_WITH_TIMING,
+        ])
+
+    return treatments
 
 
-def tsb_lt_threshold_no_photo(patient: Patient) -> str or list[str]:
+def handle_tsb_lt_threshold_no_photo(patient: Patient) -> List[TreatmentType]:
     """
     Based on Figure 3 - right arm
     """
+    treatments: List[TreatmentType] = []
     if patient.is_within_96hrs_after_phototherapy():
-        return "Follow up on TSB/TCB " + manage_follow_up_after_off_photo(patient)
+        treatments.append(TreatmentType.TCSB_WITH_TIMING)  # follow up after off-photo
 
-    elif (
-        patient.change_rate_first_day() > 0.3
-        or patient.change_rate_after_first_day() > 0.2
-        or patient.had_jaundice_within_first_24hrs()
-    ):
-        treatments = [
-            "TSB + consult clinician",
-            "CBC, blood smear, reti count",
-            "Blood group, DAT",
-        ]
+    elif (patient.change_rate_first_day() > 0.3 or
+          patient.change_rate_after_first_day() > 0.2 or
+          patient.had_jaundice_within_first_24hrs()):
+        treatments.extend([
+            TreatmentType.TSB_THEN_CONSULT,
+            TreatmentType.WORK_UP,
+        ])
         if patient.gender == Gender.MALE:
-            treatments.append("G6PD")
-        return treatments
+            treatments.append(TreatmentType.G6PD)
 
     else:
-        return "TSB/TCB follow-up"
+        treatments.append(TreatmentType.TCSB_WITH_TIMING)
+
+    return treatments
 
 
-def manage_tsb_under_threshold(
-    patient: Patient, photo_threshold: float
-) -> str or list[str]:
+def recommend_tsb_under_threshold(patient: Patient,
+                                  photo_threshold: float) -> List[str]:
     """
     Based on Figure 3: Management of TSB levels that are below phototherapy threshold
     """
+    treatments: List[TreatmentType] = []
     if patient.is_between_photo_therapy():
-        return tsb_lt_threshold_no_photo(patient)
+        treatments.extend(handle_tsb_lt_threshold_no_photo(patient))
     else:
-        return tsb_lt_threshold_with_photo(patient, photo_threshold)
+        treatments.extend(handle_tsb_lt_threshold_with_photo(patient, photo_threshold))
+
+    return generate_treatment_msgs(treatments, patient)

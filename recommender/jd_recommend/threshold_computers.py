@@ -1,4 +1,4 @@
-from recommender.jd_utils.__init__ import PROJECT_ROOT
+from recommender.jd_utils import PROJECT_ROOT
 from recommender.jd_models import Patient, NeurotoxicityRisk, Threshold
 from pathlib import Path
 from datetime import datetime, timedelta

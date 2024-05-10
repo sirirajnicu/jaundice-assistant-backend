@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="655afc8e-3611-4b0a-8edf-6e060f2d674a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/core/asgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/wsgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recommender/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/recommender/jd_recommend/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/components/default.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/views/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/views/search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jaundice-assistant-backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jaundice-assistant-backend.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/0/0068a1506b061a8948c37d78b0dd5697211558d3" beforeDir="false" afterPath="$PROJECT_DIR$/service/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/d/5d07e7d72637aa0d59c89d381fe6dc4cf46e2491" beforeDir="false" afterPath="$PROJECT_DIR$/service/connector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/1/d1a7263fc38a6779482c06cdc0d4654c6182bffc" beforeDir="false" afterPath="$PROJECT_DIR$/service/migrations/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/0/0/0068a1506b061a8948c37d78b0dd5697211558d3" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/5/d/5d07e7d72637aa0d59c89d381fe6dc4cf46e2491" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/d/1/d1a7263fc38a6779482c06cdc0d4654c6182bffc" beforeDir="false" afterPath="$PROJECT_DIR$/tests/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recommender/jd_models/patient.py" beforeDir="false" afterPath="$PROJECT_DIR$/recommender/jd_models/patient.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recommender/jd_models/treatment.py" beforeDir="false" afterPath="$PROJECT_DIR$/recommender/jd_models/treatment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recommender/jd_recommend/manage_tcb.py" beforeDir="false" afterPath="$PROJECT_DIR$/recommender/jd_recommend/manage_tcb.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recommender/jd_recommend/manage_tsb_over_photo.py" beforeDir="false" afterPath="$PROJECT_DIR$/recommender/jd_recommend/manage_tsb_over_photo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recommender/jd_recommend/manage_tsb_under_photo.py" beforeDir="false" afterPath="$PROJECT_DIR$/recommender/jd_recommend/manage_tsb_under_photo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/recommender/jd_recommend/msg_generation.py" beforeDir="false" afterPath="$PROJECT_DIR$/recommender/jd_recommend/msg_generation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jd_models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/recommender/jd_models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jd_models/patient.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jd_models/treatment.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jd_recommend/follow_up_after_off_photo.py" beforeDir="false" afterPath="$PROJECT_DIR$/recommender/jd_recommend/follow_up_after_off_photo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jd_recommend/follow_up_never_on_photo.py" beforeDir="false" afterPath="$PROJECT_DIR$/recommender/jd_recommend/follow_up_never_on_photo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jd_recommend/manage_tcb.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jd_recommend/manage_tsb_over_photo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jd_recommend/manage_tsb_under_photo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jd_recommend/msg_generation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jd_recommend/threshold_computers.py" beforeDir="false" afterPath="$PROJECT_DIR$/recommender/jd_recommend/threshold_computers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/jd_utils/const.py" beforeDir="false" afterPath="$PROJECT_DIR$/recommender/jd_utils/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/recommender/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/routes.py" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="service" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2SCDxSwTKJwOc3EgBpvPwO60Agn" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "Merging treatments",
+    "last_opened_file_path": "/Users/nawat/work/jaundice-assistant-backend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="655afc8e-3611-4b0a-8edf-6e060f2d674a" name="Changes" comment="" />
+      <created>1688641916510</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1688641916510</updated>
+      <workItem from="1688641917507" duration="632000" />
+      <workItem from="1688714265826" duration="607000" />
+      <workItem from="1691120645478" duration="412000" />
+      <workItem from="1691121068035" duration="6808000" />
+      <workItem from="1693282567681" duration="131000" />
+      <workItem from="1693282706981" duration="99000" />
+      <workItem from="1693282886995" duration="12064000" />
+      <workItem from="1693382540615" duration="4974000" />
+      <workItem from="1694063599714" duration="3007000" />
+      <workItem from="1694074031113" duration="2278000" />
+      <workItem from="1694104860937" duration="4371000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
