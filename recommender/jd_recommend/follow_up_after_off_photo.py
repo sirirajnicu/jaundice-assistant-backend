@@ -3,9 +3,11 @@ from datetime import timedelta
 
 
 def has_risk_of_rebound(patient: Patient) -> bool:
-    return patient.gestational_age < 38 or \
-        patient.age_at_start_of_photo() < timedelta(hours=48) or \
-        patient.has_hemolytic_diseases()
+    return (
+        patient.gestational_age < 38
+        or patient.age_at_start_of_photo() < timedelta(hours=48)
+        or patient.has_hemolytic_diseases()
+    )
 
 
 def handle_birth_admission(patient: Patient) -> str or list[str]:

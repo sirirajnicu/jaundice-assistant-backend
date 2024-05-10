@@ -5,6 +5,7 @@ from recommender.jd_models.treatment import TreatmentType
 from msg_generation import generate_treatment_msgs
 
 
+
 def handle_tsb_lt_threshold_with_photo(patient: Patient,
                                        photo_threshold: float) -> List[TreatmentType]:
     """
@@ -14,6 +15,7 @@ def handle_tsb_lt_threshold_with_photo(patient: Patient,
     treatments: List[TreatmentType] = []
 
     if tsb_diff < 2.0:
+
         treatments.extend([
             TreatmentType.CONT_PHOTO,
             TreatmentType.TSB_SHIELDED_TCB_BY_RISK,

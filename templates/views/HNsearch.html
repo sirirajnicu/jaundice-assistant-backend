@@ -1,0 +1,57 @@
+{% extends 'components/default.html' %}
+
+{% block head %}
+    <title>HN Search</title>
+{% endblock %}
+
+{% block body %}
+
+{% with pageName="HN Search" %}
+{% include 'components/navbar.html' %}
+{% endwith %}
+<div style="background-color: #eeeeee;flex-direction: column; display: flex;min-height: 100vh;margin: 0;font-weight:500;">
+    <div class="search_bar">
+        <form method="post">
+            {% csrf_token %}
+            {{ SearchForm.searchid }}
+            <button class="search_button"  type="submit" >
+                <i class="fa fa-search" style="size: 10%;" ></i>
+            </button>
+        </form>
+        {% if ANlist is None %}
+        <p style='color: #b8b8b8;padding: 7px;'> HN not found</p>
+        {% elif ANlist %}
+        <p style='color: #525252; padding: 7px; font-weight: 500; font-size: 18px; text-align: left;'> HN: {{ HN }}</p>
+        {% else %}
+        <p style='color: #525252; padding: 7px; font-weight: 500; font-size: 18px; text-align: left;'> HN: {{ HN }}</p>
+        {% endif %}
+    </div>
+
+    <!-- <div style='color: #7f7f7f;text-align: left;padding: 20px 0 10px 8%;'>
+        {% if ANlist is None %}
+            <p>HN not found</p>
+        {% else %}
+            <p>HN: {{ HN }}</p>
+        {% endif %}
+    </div> -->
+    
+
+        <div>
+            <div>
+                {% if ANlist is None %}
+                {% elif ANlist %}
+                {% else %}
+                <p style='color: #b8b8b8;padding: 1pc;font-weight: 100;'> Zero Admission Numbers</p>
+                {% endif %}
+
+                {% for an in ANlist %}
+                <a href="{% url 'service:form' an %}" , style="text-decoration: none;">
+                    <div class="{% cycle 'AN-card-odd' 'AN-card-even' %}">
+                        <h4>{{ an }}</h4>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+</div>
+{% endblock %}

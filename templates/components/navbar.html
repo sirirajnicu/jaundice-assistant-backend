@@ -1,0 +1,14 @@
+<nav class="navbar-custom">
+    <span class="navbar-title"> {{ pageName }} </span>
+
+    <div>
+        <a href="{% url 'service:HNsearch' %}" style="text-decoration: none;">
+            <button class="btn-others">Search</button>
+        </a>
+        <button class="btn-others">Dashboard</button>
+
+        <a href="{% url 'service:loginUser' %}" style="text-decoration: none;">
+            <button class="btn-logout"> Logout</button>
+        </a>
+    </div>
+</nav>

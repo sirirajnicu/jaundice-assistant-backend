@@ -27,21 +27,28 @@ def get_ga_as_filename(patient: Patient) -> str:
     return f"./GA{patient.gestational_age}.csv"
 
 
-def get_threshold_path_from_ga(patient: Patient,
-                               threshold_type: Threshold) -> Path:
+def get_threshold_path_from_ga(patient: Patient, threshold_type: Threshold) -> Path:
     match (threshold_type, patient.neuro_risk):
         case (Threshold.PHOTO, NeurotoxicityRisk.NO_RISK):
-            return RESOURCES_ROOT.joinpath(PHOTO_NO_RISK).joinpath(get_ga_as_filename(patient))
+            return RESOURCES_ROOT.joinpath(PHOTO_NO_RISK).joinpath(
+                get_ga_as_filename(patient)
+            )
         case (Threshold.PHOTO, NeurotoxicityRisk.AT_RISK):
-            return RESOURCES_ROOT.joinpath(PHOTO_AT_RISK).joinpath(get_ga_as_filename(patient))
+            return RESOURCES_ROOT.joinpath(PHOTO_AT_RISK).joinpath(
+                get_ga_as_filename(patient)
+            )
         case (Threshold.EXCHANGE, NeurotoxicityRisk.NO_RISK):
-            return RESOURCES_ROOT.joinpath(EXCHANGE_NO_RISK).joinpath(get_ga_as_filename(patient))
+            return RESOURCES_ROOT.joinpath(EXCHANGE_NO_RISK).joinpath(
+                get_ga_as_filename(patient)
+            )
         case (Threshold.EXCHANGE, NeurotoxicityRisk.AT_RISK):
-            return RESOURCES_ROOT.joinpath(EXCHANGE_AT_RISK).joinpath(get_ga_as_filename(patient))
+            return RESOURCES_ROOT.joinpath(EXCHANGE_AT_RISK).joinpath(
+                get_ga_as_filename(patient)
+            )
 
 
 def compute_photo_threshold(patient: Patient) -> float:
-    """ From appendix 2 and 3 """
+    """From appendix 2 and 3"""
     threshold_file = get_threshold_path_from_ga(patient, Threshold.PHOTO)
     threshold_data = pd.read_csv(threshold_file).set_index(HOL_INDEX_NAME)
 
@@ -52,7 +59,7 @@ def compute_photo_threshold(patient: Patient) -> float:
 
 
 def compute_exchange_threshold(patient: Patient) -> float:
-    """ From appendix 4 and 5 """
+    """From appendix 4 and 5"""
     threshold_file = get_threshold_path_from_ga(patient, Threshold.EXCHANGE)
     threshold_data = pd.read_csv(threshold_file).set_index(HOL_INDEX_NAME)
 

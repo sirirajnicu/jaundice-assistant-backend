@@ -5,8 +5,9 @@ from recommender.jd_models.treatment import TreatmentType
 from msg_generation import generate_treatment_msgs
 
 
-def tcb_within_lt3_geq15_from_threshold(tcb_value: float,
-                                        photo_threshold: float) -> bool:
+def tcb_within_lt3_geq15_from_threshold(
+    tcb_value: float, photo_threshold: float
+) -> bool:
     threshold_diff = photo_threshold - tcb_value
     return threshold_diff <= 3.0 or tcb_value >= 15.0
 
