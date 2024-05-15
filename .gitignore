@@ -1,9 +1,6 @@
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,pycharm+all,django
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,pycharm+all,django
 
-cred.yaml
-
-
 ### Django ###
 *.log
 *.pot
@@ -282,3 +279,5 @@ fabric.properties
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,pycharm+all,django
+
+secrets/*.txt

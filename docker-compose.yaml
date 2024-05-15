@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:16.3
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: "postgres"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD_FILE: "/run/secrets/db_password"
+    ports:
+      - "5432:5432"
+    secrets:
+      - db_password
+    networks:
+      - jaundice_network
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "postgres" ]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+
+volumes:
+  postgres_data:
+
+networks:
+  jaundice_network:
+
+secrets:
+  db_password:
+    file: "./secrets/db_password.txt"
+  django_secret_key:
+    file: "./secrets/django_secrets.txt"
